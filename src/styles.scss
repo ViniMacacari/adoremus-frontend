@@ -24,7 +24,7 @@ a {
     font-weight: bold;
     font-style: normal;
 
-    color: #6b447a;
+    color: #bca000;
 
     cursor: default;
 }
@@ -41,7 +41,7 @@ button {
     font-weight: normal;
     font-style: normal;
 
-    color: #6b447a;
+    color: #bca000;
 }
 
 button {
@@ -51,7 +51,7 @@ button {
     align-items: center;
 
     border-radius: 15px;
-    background: #6b447a;
+    background: #bca000;
     box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
 
     overflow: hidden;
@@ -66,7 +66,7 @@ button {
         content: " ";
         width: 0%;
         height: 100%;
-        background: #3a1e46;
+        background: #887400;
         position: absolute;
         transition: all 0.2s ease-in-out;
         right: 0;
@@ -145,7 +145,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #6b447a;
+    background-color: #bca000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
