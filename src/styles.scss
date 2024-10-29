@@ -1,1 +1,153 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+
+    color: #6b447a;
+
+    cursor: default;
+}
+
+p {
+    cursor: default;
+}
+
+p,
+li,
+ul,
+button {
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+
+    color: #6b447a;
+}
+
+button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 15px;
+    background: #6b447a;
+    box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+
+    font-size: 14px;
+    width: 250px;
+    height: 50px;
+
+    &:after {
+        content: " ";
+        width: 0%;
+        height: 100%;
+        background: #3a1e46;
+        position: absolute;
+        transition: all 0.2s ease-in-out;
+        right: 0;
+    }
+
+    &:hover {
+        &::after {
+            right: auto;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    span {
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+        padding: 18px 25px;
+        color: #fff;
+        font-size: 1.125em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        z-index: 20;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            color: #fff;
+            animation: scaleUp 0.2s ease-in-out;
+        }
+    }
+}
+
+.btn-close {
+    outline: none;
+    box-shadow: none;
+    filter: invert(33%) sepia(34%) saturate(359%) hue-rotate(258deg) brightness(84%) contrast(89%);
+    transition: all 0.1s ease-in-out;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:after {
+        height: 0%;
+        background: #3a1e46;
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6b447a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #56335e;
+}

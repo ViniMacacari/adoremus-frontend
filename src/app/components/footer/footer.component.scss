@@ -1,0 +1,23 @@
+.footer {
+    background-color: #f6f6f6;
+    padding: 20px;
+
+    h1 {
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 25px;
+    }
+
+    hr {
+        color: #6b447a;
+    }
+}
+
+.footer-link {
+    font-family: "Outfit", sans-serif !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+
+    text-decoration: none;
+    cursor: pointer;
+}
