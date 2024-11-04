@@ -72,3 +72,18 @@
 .cssbuttons-io-button:active .icon {
     transform: scale(0.95);
 }
+
+@media (max-width: 800px) {
+    .texo-titulo-home {
+        font-size: 20px;
+    }
+
+    .texto-home {
+        max-width: 420px;
+        font-size: 15px;
+    }
+
+    #model {
+        display: none;
+    }
+}
