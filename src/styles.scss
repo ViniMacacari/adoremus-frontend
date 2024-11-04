@@ -24,7 +24,7 @@ a {
     font-weight: bold;
     font-style: normal;
 
-    color: #bca000;
+    color: #d4c403;
 
     cursor: default;
 }
@@ -41,17 +41,17 @@ button {
     font-weight: normal;
     font-style: normal;
 
-    color: #bca000;
+    color: #d4c403;
 }
 
-button {
+.btn-page {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 
     border-radius: 15px;
-    background: #bca000;
+    background: #d4c403;
     box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
 
     overflow: hidden;
@@ -66,7 +66,7 @@ button {
         content: " ";
         width: 0%;
         height: 100%;
-        background: #887400;
+        background: #242c83;
         position: absolute;
         transition: all 0.2s ease-in-out;
         right: 0;
@@ -135,6 +135,12 @@ button {
     }
 }
 
+// Cursor
+
+.pointer {
+    cursor: pointer;
+}
+
 // Scrollbar
 ::-webkit-scrollbar {
     width: 4px;
@@ -145,7 +151,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #bca000;
+    background-color: #d4c403;
 }
 
 ::-webkit-scrollbar-thumb:hover {
