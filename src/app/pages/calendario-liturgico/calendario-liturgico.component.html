@@ -1,14 +1,14 @@
 <div class="d-flex align-items-center justify-content-center gap-5">
-    <div class="filtro gap-1">
-        <button (click)="alterarAno(-1)">&#9664;</button>
+    <div class="filtro gap-3">
+        <button class="trocar" (click)="alterarAno(-1)">&#9664;</button>
         <span>{{ anoSelecionado }}</span>
-        <button (click)="alterarAno(1)">&#9654;</button>
+        <button class="trocar" (click)="alterarAno(1)">&#9654;</button>
     </div>
 
     <div class="filtro filtro-mes gap-1">
-        <button (click)="alterarMes(-1)">&#9664;</button>
+        <button class="trocar" (click)="alterarMes(-1)">&#9664;</button>
         <span>{{ obterNomeMes() }}</span>
-        <button (click)="alterarMes(1)">&#9654;</button>
+        <button class="trocar" (click)="alterarMes(1)">&#9654;</button>
     </div>
 </div>
 
@@ -28,14 +28,14 @@
     </div>
 </div>
 
-<h4 class="black text-center my-2">Legenda:</h4>
+<h4 class="black text-center my-2">Legenda</h4>
 <div class="d-flex align-items-center justify-content-center flex-wrap gap-4 mb-4">
     <div class="d-flex align-items-center justify-content-center gap-2">
         <div class="bloco-legenda preceito"></div>
-        <p>Dias de preceito</p>
+        <p class="black">Dias de preceito</p>
     </div>
     <div class="d-flex align-items-center justify-content-center gap-2">
         <div class="bloco-legenda solenidade"></div>
-        <p>Dias de Solenidade</p>
+        <p class="black">Dias de Solenidade</p>
     </div>
 </div>

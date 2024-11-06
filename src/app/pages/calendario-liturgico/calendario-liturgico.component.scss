@@ -44,6 +44,7 @@
 
 .data {
     font-weight: bold;
+    font-size: 1em;
 }
 
 .evento {
@@ -105,7 +106,7 @@ span {
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .filtro-mes {
@@ -125,10 +126,45 @@ p {
     margin: 0;
 }
 
-@media (max-width: 768px) {
+.trocar {
+    font-size: 14px !important;
+}
+
+@media (max-width: 992px) {
+    .data {
+        font-size: 14px !important;
+    }
+
+    .dia {
+        span {
+            font-size: 10px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .data {
+        font-size: 12px !important;
+    }
+
     .dia {
         min-width: 42px;
         max-width: 42px;
+
+        span {
+            font-size: 8px;
+        }
+    }
+}
+
+@media (max-width: 355px) {
+    .data {
+        font-size: 12px !important;
+    }
+
+    .dia {
+        min-width: 36px;
+        max-width: 36px;
 
         span {
             font-size: 7.5px;
