@@ -18,7 +18,7 @@ const TempoLiturgicoCor: { [key: string]: string } = {
   Advento: 'violet'
 }
 
-const CorSolenidadePreceito = 'goldenrod' // Cor fixa para Solenidades e Preceitos
+const CorSolenidadePreceito = 'goldenrod'
 
 const Meses = [
   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -36,8 +36,8 @@ export class CalendarioLiturgicoComponent {
   diasEspeciais: Evento[] = []
   eventosPorDia: { [key: string]: Evento } = {}
   diasDoMes: { dia: string | null; diaSemana: number; tempoLiturgico: string }[] = []
-  mesSelecionado = new Date().getMonth() + 1 // Mês atual
-  anoSelecionado = new Date().getFullYear() // Ano atual
+  mesSelecionado = new Date().getMonth() + 1
+  anoSelecionado = new Date().getFullYear()
 
   constructor(private requisicao: RequisicaoService) { }
 
@@ -64,7 +64,7 @@ export class CalendarioLiturgicoComponent {
     this.gerarDiasDoMes()
   }
 
-  gerarDiasDoMes() {
+  async gerarDiasDoMes() {
     this.diasDoMes = []
     const primeiroDiaDoMes = new Date(this.anoSelecionado, this.mesSelecionado - 1, 1)
     const diaSemanaInicio = primeiroDiaDoMes.getDay()
@@ -77,13 +77,50 @@ export class CalendarioLiturgicoComponent {
     for (let i = 1; i <= diasNoMes; i++) {
       const dataAtual = new Date(this.anoSelecionado, this.mesSelecionado - 1, i)
       const diaSemana = dataAtual.getDay()
-      const dataString = `${this.anoSelecionado}-${this.mesSelecionado}-${i}`
-
-      const evento = this.eventosPorDia[dataString]
-      const tempoLiturgico = evento ? evento.tempo_liturgico : this.obterTempoLiturgicoPorDia(dataAtual)
-
+      const tempoLiturgico = this.verificarTempoLiturgico(dataAtual)
       this.diasDoMes.push({ dia: i.toString(), diaSemana, tempoLiturgico })
     }
+  }
+
+  verificarTempoLiturgico(data: Date): string {
+    const natalInicio = new Date(data.getFullYear(), 11, 25)
+    const natalFim = this.encontrarDataFimNatal()
+
+    if (natalFim && ((data >= natalInicio && data.getFullYear() === natalInicio.getFullYear()) || (data <= natalFim && data.getFullYear() === natalFim.getFullYear()))) {
+      return 'Natal'
+    }
+
+    for (const evento of this.diasEspeciais) {
+      const eventoData = new Date(evento.data)
+
+      if (evento.tipo.includes("Início do Tempo Litúrgico") && eventoData <= data) {
+        const tempoLiturgico = evento.tempo_liturgico
+        const dataFim = this.encontrarDataFimPorNome(tempoLiturgico)
+
+        if (dataFim && data <= dataFim) {
+          return tempoLiturgico
+        }
+      }
+    }
+    return 'Tempo Comum'
+  }
+
+  encontrarDataFimNatal(): Date | null {
+    for (const evento of this.diasEspeciais) {
+      if (evento.tipo === "Fim do Tempo Litúrgico" && evento.tempo_liturgico === "Natal") {
+        return new Date(evento.data)
+      }
+    }
+    return null
+  }
+
+  encontrarDataFimPorNome(tempo: string): Date | null {
+    for (const evento of this.diasEspeciais) {
+      if (evento.tipo.includes("Fim do Tempo Litúrgico") && evento.tempo_liturgico === tempo) {
+        return new Date(evento.data)
+      }
+    }
+    return null
   }
 
   async alterarMes(incremento: number) {
@@ -123,12 +160,6 @@ export class CalendarioLiturgicoComponent {
     if (evento) return evento.nome
     const data = new Date(this.anoSelecionado, this.mesSelecionado - 1, +dia)
     return data.getDay() === 0 ? 'Missa' : ''
-  }
-
-  obterTempoLiturgicoPorDia(data: Date): string {
-    const diaString = `${data.getFullYear()}-${data.getMonth() + 1}-${data.getDate()}`
-    const evento = this.diasEspeciais.find(e => e.data.startsWith(diaString))
-    return evento ? evento.tempo_liturgico : 'Tempo Comum'
   }
 
   obterNomeMes(): string {
