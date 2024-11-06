@@ -1,6 +1,7 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RequisicaoService } from '../../services/requisicao/requisicao.service'
+import { ModalLoadingComponent } from "../../components/modal-loading/modal-loading.component"
 
 type Evento = {
   nome: string
@@ -28,7 +29,7 @@ const Meses = [
 @Component({
   selector: 'app-calendario-liturgico',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalLoadingComponent],
   templateUrl: './calendario-liturgico.component.html',
   styleUrls: ['./calendario-liturgico.component.scss']
 })
@@ -47,8 +48,10 @@ export class CalendarioLiturgicoComponent {
   }
 
   async carregarEventosDoAno() {
+    ModalLoadingComponent.show()
     const res = await this.requisicao.get(`/geral/buscar/calendario-liturgico?ano=${this.anoSelecionado}`)
     this.diasEspeciais = res.resultado
+    ModalLoadingComponent.hide()
   }
 
   filtrarEventosPorMes() {
