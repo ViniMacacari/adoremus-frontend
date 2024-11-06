@@ -52,35 +52,40 @@
 }
 
 .default {
-    background-color: lightgray;
+    background-color: rgba(211, 211, 211, .3);
 }
 
 .blue {
-    background-color: blue;
-    color: white;
+    background-color: rgba(0, 0, 255, .3);
+    color: black;
 }
 
 .green {
-    background-color: green;
-    color: white;
+    background-color: rgba(0, 128, 0, .3);
+    color: black;
 }
 
 .purple {
-    background-color: purple;
-    color: white;
+    background-color: rgba(128, 0, 128, .3);
+    color: black;
 }
 
 .red {
-    background-color: red;
-    color: white;
+    background-color: rgba(255, 0, 0, .3);
+    color: black;
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: rgba(255, 255, 0, .3);
     color: black;
 }
 
 .violet {
-    background-color: violet;
-    color: white;
+    background-color: rgba(238, 130, 238, .3);
+    color: black;
+}
+
+.goldenrod {
+    background-color: goldenrod;
+    color: black;
 }

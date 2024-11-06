@@ -1,20 +1,28 @@
-<div class="filtro">
-    <button (click)="alterarMes(-1)">&#9664;</button>
-    <span>{{ mesSelecionado }}/{{ anoSelecionado }}</span>
-    <button (click)="alterarMes(1)">&#9654;</button>
+<div class="d-flex align-items-center justify-content-center gap-5">
+    <div class="filtro gap-1">
+        <button (click)="alterarAno(-1)">&#9664;</button>
+        <span>{{ anoSelecionado }}</span>
+        <button (click)="alterarAno(1)">&#9654;</button>
+    </div>
+
+    <div class="filtro gap-1">
+        <button (click)="alterarMes(-1)">&#9664;</button>
+        <span>{{ obterNomeMes() }}</span>
+        <button (click)="alterarMes(1)">&#9654;</button>
+    </div>
 </div>
 
-<div class="calendario" *ngIf="diasDoMes.length > 0">
+<div class="calendario p-2" *ngIf="diasDoMes.length > 0">
     <div class="semana">
         <div *ngFor="let diaSemana of ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']" class="dia-semana">
             <span>{{ diaSemana }}</span>
         </div>
     </div>
     <div class="mes">
-        <div *ngFor="let dia of diasDoMes" class="dia" [ngClass]="obterClasseDia(dia.dia)">
-            <span class="data">{{ dia.dia }}</span>
-            <div class="evento" *ngIf="eventosPorDia[dia.dia]">
-                <span class="evento-nome">{{ eventosPorDia[dia.dia].nome }}</span>
+        <div *ngFor="let dia of diasDoMes" class="dia" [ngClass]="obterClasseDia(dia.dia, dia.tempoLiturgico)">
+            <span *ngIf="dia.dia" class="data">{{ dia.dia }}</span>
+            <div *ngIf="dia.dia && obterTextoDia(dia.dia)" class="evento">
+                <span class="evento-nome">{{ obterTextoDia(dia.dia) }}</span>
             </div>
         </div>
     </div>
