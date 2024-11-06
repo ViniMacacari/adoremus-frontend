@@ -18,7 +18,7 @@ const TempoLiturgicoCor: { [key: string]: string } = {
   Advento: 'violet'
 }
 
-const CorSolenidadePreceito = 'goldenrod' // Cor fixa para solenidades e preceitos
+const CorSolenidadePreceito = 'goldenrod' // Cor fixa para Solenidades e Preceitos
 
 const Meses = [
   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -79,28 +79,11 @@ export class CalendarioLiturgicoComponent {
       const diaSemana = dataAtual.getDay()
       const dataString = `${this.anoSelecionado}-${this.mesSelecionado}-${i}`
 
-      // Verifica se existe um evento específico para o dia
       const evento = this.eventosPorDia[dataString]
-      const tempoLiturgico = evento ? evento.tempo_liturgico : this.obterTempoLiturgicoAtual(dataAtual)
+      const tempoLiturgico = evento ? evento.tempo_liturgico : this.obterTempoLiturgicoPorDia(dataAtual)
 
       this.diasDoMes.push({ dia: i.toString(), diaSemana, tempoLiturgico })
     }
-  }
-
-  obterTempoLiturgicoAtual(data: Date): string {
-    // Encontra o tempo litúrgico correto para um dia sem evento específico
-    const eventosOrdenados = this.diasEspeciais
-      .filter(evento => evento.tipo.includes("Início do Tempo Litúrgico") || evento.tipo.includes("Fim do Tempo Litúrgico"))
-      .map(evento => ({ ...evento, data: new Date(evento.data) }))
-      .sort((a, b) => a.data.getTime() - b.data.getTime())
-
-    let tempoAtual = 'Tempo Comum'
-    for (const evento of eventosOrdenados) {
-      if (data >= evento.data) {
-        tempoAtual = evento.tempo_liturgico
-      }
-    }
-    return tempoAtual
   }
 
   async alterarMes(incremento: number) {
@@ -127,12 +110,10 @@ export class CalendarioLiturgicoComponent {
     if (!dia) return 'vazio'
     const evento = this.eventosPorDia[`${this.anoSelecionado}-${this.mesSelecionado}-${+dia}`]
 
-    // Verifica se é um dia de preceito ou solenidade e aplica a cor fixa
     if (evento && (evento.tipo.includes("Preceito") || evento.tipo.includes("Solenidade"))) {
       return CorSolenidadePreceito
     }
 
-    // Aplica a cor do tempo litúrgico para os outros dias
     return TempoLiturgicoCor[tempoLiturgico] || 'default'
   }
 
@@ -142,6 +123,12 @@ export class CalendarioLiturgicoComponent {
     if (evento) return evento.nome
     const data = new Date(this.anoSelecionado, this.mesSelecionado - 1, +dia)
     return data.getDay() === 0 ? 'Missa' : ''
+  }
+
+  obterTempoLiturgicoPorDia(data: Date): string {
+    const diaString = `${data.getFullYear()}-${data.getMonth() + 1}-${data.getDate()}`
+    const evento = this.diasEspeciais.find(e => e.data.startsWith(diaString))
+    return evento ? evento.tempo_liturgico : 'Tempo Comum'
   }
 
   obterNomeMes(): string {

@@ -35,10 +35,11 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    height: 80px;
+    border: 1px solid #ededed;
+    border-radius: 10px;
+    height: 100px;
     width: 100%;
+    min-width: 42px;
 }
 
 .data {
@@ -88,4 +89,34 @@
 .goldenrod {
     background-color: goldenrod;
     color: black;
+}
+
+span {
+    color: black !important;
+}
+
+.evento-nome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+}
+
+.filtro-mes {
+    span {
+        text-align: center;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dia {
+        min-width: 42px;
+        max-width: 42px;
+
+        span {
+            font-size: 7.5px;
+        }
+    }
 }
