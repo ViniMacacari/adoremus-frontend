@@ -1,0 +1,86 @@
+.filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filtro button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.calendario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.semana,
+.mes {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.dia-semana {
+    font-weight: bold;
+    text-align: center;
+}
+
+.dia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 80px;
+    width: 100%;
+}
+
+.data {
+    font-weight: bold;
+}
+
+.evento {
+    margin-top: 5px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.default {
+    background-color: lightgray;
+}
+
+.blue {
+    background-color: blue;
+    color: white;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+.purple {
+    background-color: purple;
+    color: white;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.yellow {
+    background-color: yellow;
+    color: black;
+}
+
+.violet {
+    background-color: violet;
+    color: white;
+}

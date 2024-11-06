@@ -1,1 +1,21 @@
-<p>calendario-liturgico works!</p>
+<div class="filtro">
+    <button (click)="alterarMes(-1)">&#9664;</button>
+    <span>{{ mesSelecionado }}/{{ anoSelecionado }}</span>
+    <button (click)="alterarMes(1)">&#9654;</button>
+</div>
+
+<div class="calendario" *ngIf="diasDoMes.length > 0">
+    <div class="semana">
+        <div *ngFor="let diaSemana of ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']" class="dia-semana">
+            <span>{{ diaSemana }}</span>
+        </div>
+    </div>
+    <div class="mes">
+        <div *ngFor="let dia of diasDoMes" class="dia" [ngClass]="obterClasseDia(dia.dia)">
+            <span class="data">{{ dia.dia }}</span>
+            <div class="evento" *ngIf="eventosPorDia[dia.dia]">
+                <span class="evento-nome">{{ eventosPorDia[dia.dia].nome }}</span>
+            </div>
+        </div>
+    </div>
+</div>

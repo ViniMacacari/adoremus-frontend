@@ -9,13 +9,13 @@ import { catchError } from 'rxjs/operators'
 export class RequisicaoService {
 
   // private url = 'https://api.adoremus.com.br'
-  private url = 'http://localhost'
+  private url = 'http://localhost:2024'
 
   constructor(private http: HttpClient) { }
 
   async get(complemento: string, responseType?: 'blob', options?: any): Promise<any> {
     const headers = this.createHeaders()
-    const config: any = { headers, withCredentials: true }
+    const config: any = { headers, withCredentials: false }
 
     if (responseType === 'blob') {
       config.responseType = 'blob'
