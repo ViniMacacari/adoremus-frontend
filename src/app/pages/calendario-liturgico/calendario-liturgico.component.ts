@@ -19,7 +19,8 @@ const TempoLiturgicoCor: { [key: string]: string } = {
   Advento: 'violet'
 }
 
-const CorSolenidadePreceito = 'goldenrod'
+const CorPreceito = 'preceito'
+const CorSolenidade = 'solenidade'
 
 const Meses = [
   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -150,8 +151,10 @@ export class CalendarioLiturgicoComponent {
     if (!dia) return 'vazio'
     const evento = this.eventosPorDia[`${this.anoSelecionado}-${this.mesSelecionado}-${+dia}`]
 
-    if (evento && (evento.tipo.includes("Preceito") || evento.tipo.includes("Solenidade"))) {
-      return CorSolenidadePreceito
+    if (evento && (evento.tipo.includes("Preceito"))) {
+      return CorPreceito
+    } else if (evento && (evento.tipo.includes("Solenidade"))) {
+      return CorSolenidade
     }
 
     return TempoLiturgicoCor[tempoLiturgico] || 'default'

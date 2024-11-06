@@ -86,8 +86,13 @@
     color: black;
 }
 
-.goldenrod {
+.preceito {
     background-color: goldenrod;
+    color: black;
+}
+
+.solenidade {
+    background-color: rgba(205, 116, 0, .3);
     color: black;
 }
 
@@ -108,6 +113,16 @@ span {
         text-align: center;
         min-width: 120px;
     }
+}
+
+.bloco-legenda {
+    min-width: 20px;
+    min-height: 20px;
+    border-radius: 10px;
+}
+
+p {
+    margin: 0;
 }
 
 @media (max-width: 768px) {
