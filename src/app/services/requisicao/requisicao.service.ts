@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
-export class RequisicaoService {
+export class RequestService {
 
   // private url = 'https://api.adoremus.com.br'
   private url = 'http://localhost:2024'

@@ -1,10 +1,22 @@
 <div class="content">
-    <div class="d-flex align-items-center justify-content-center w-100 py-3">
+    <div class="top-content d-flex align-items-center justify-content-center w-100 gap-3 py-3">
         <div class="presentation">
             <h1>
                 Adorarte
                 <br> Devemus
             </h1>
+        </div>
+        <div class="presentation-liturgy-day">
+            <app-loader *ngIf="!allLoaded"></app-loader>
+            <div *ngIf="allLoaded" class="d-flex flex-column align-items-center justify-content-center">
+                <h2 class="mb-3">Liturgia</h2>
+                <h4>Evangelho</h4>
+                <h3>{{ dayLiturgy.gospel }}</h3>
+                <h4 class="mt-3">Primeira leitura</h4>
+                <p class="mb-0">{{ dayLiturgy.firstReading }}</p>
+                <h4 *ngIf="dayLiturgy.secondReading" class="mt-3">Segunda leitura</h4>
+                <p *ngIf="dayLiturgy.secondReading">{{ dayLiturgy.secondReading }}</p>
+            </div>
         </div>
     </div>
 </div>

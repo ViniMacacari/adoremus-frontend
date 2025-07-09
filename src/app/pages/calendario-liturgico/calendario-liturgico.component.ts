@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { RequisicaoService } from '../../services/requisicao/requisicao.service'
+import { RequestService } from '../../services/requisicao/requisicao.service'
 import { ModalLoadingComponent } from "../../components/modal-loading/modal-loading.component"
 
 type Evento = {
@@ -41,7 +41,7 @@ export class CalendarioLiturgicoComponent {
   mesSelecionado = new Date().getMonth() + 1
   anoSelecionado = new Date().getFullYear()
 
-  constructor(private requisicao: RequisicaoService) { }
+  constructor(private requisicao: RequestService) { }
 
   async ngOnInit() {
     await this.carregarEventosDoAno()
