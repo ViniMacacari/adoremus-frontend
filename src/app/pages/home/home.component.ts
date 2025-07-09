@@ -3,13 +3,14 @@ import { Router } from '@angular/router'
 import { CommonModule } from '@angular/common'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from "../../components/loader/loader.component"
+import { ButtonComponent } from "../../components/button/button.component"
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderComponent, ButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent {
