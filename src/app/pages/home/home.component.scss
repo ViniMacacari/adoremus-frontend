@@ -35,6 +35,16 @@
                 font-size: 2.5em;
             }
         }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em !important;
+            }
+        }
     }
 
     .presentation-liturgy-day {

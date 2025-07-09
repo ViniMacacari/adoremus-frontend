@@ -13,6 +13,11 @@
     hr {
         color: #ada886;
     }
+
+    @media (max-width: 600px) {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
 }
 
 .footer-link {
