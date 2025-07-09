@@ -1,6 +1,8 @@
 .navbar {
     padding: 5px 20px !important;
-    background-color: #070707;
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+    background-color: #2d1f1f;
     z-index: 999;
 }
 
@@ -12,12 +14,12 @@ h1 {
 }
 
 .navbar-brand {
-    color: rgb(212, 196, 3);
+    color: #ada886;
     font-weight: bold;
 }
 
 .nav-link {
-    color: #d4c403;
+    color: #ada886;
     transition: 0.3s;
 
     cursor: pointer;

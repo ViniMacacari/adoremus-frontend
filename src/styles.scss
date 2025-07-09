@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Caudex Regular';
+    src: url('/fonts/caudex-regular.ttf');
+}
+
+@font-face {
+    font-family: 'Caudex Bold';
+    src: url('/fonts/caudex-bold.ttf');
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -9,6 +19,8 @@ html {
     padding: 0;
     height: 100%;
     width: 100%;
+
+    background-color: #130b0b;
 }
 
 h1,
@@ -20,11 +32,10 @@ h6,
 a {
     margin: 0;
 
-    font-family: "DM Sans", sans-serif;
-    font-weight: bold;
+    font-family: "Caudex Bold";
     font-style: normal;
 
-    color: #d4c403;
+    color: #ada886;
 
     cursor: default;
 }
@@ -38,11 +49,11 @@ span,
 li,
 ul,
 button {
-    font-family: "Outfit", sans-serif;
+    font-family: "Caudex Regular", sans-serif;
     font-weight: normal;
     font-style: normal;
 
-    color: #d4c403;
+    color: #ada886;
 }
 
 .btn-page {
@@ -176,11 +187,11 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #2d1f1f;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #d4c403;
+    background-color: #ada886;
 }
 
 ::-webkit-scrollbar-thumb:hover {
