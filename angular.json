@@ -32,7 +32,19 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "public/super-icons/all.css",
+              "public/super-icons/duotone-light.css",
+              "public/super-icons/duotone-regular.css",
+              "public/super-icons/duotone-thin.css",
+              "public/super-icons/sharp-duotone-light.css",
+              "public/super-icons/sharp-duotone-solid.css",
+              "public/super-icons/sharp-duotone-regular.css",
+              "public/super-icons/sharp-duotone-thin.css",
+              "public/super-icons/sharp-light.css",
+              "public/super-icons/sharp-regular.css",
+              "public/super-icons/sharp-solid.css",
+              "public/super-icons/sharp-thin.css"
             ],
             "scripts": []
           },

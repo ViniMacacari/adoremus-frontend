@@ -1,8 +1,30 @@
-<h2 class="w-100 text-center mt-3">Orações</h2>
-<p class="w-100 text-center mt-1 mb-3 bold">Aprenda orações centrais da Fé Católica</p>
+<h2 *ngIf="!selectedPrayer.nome" class="w-100 text-center mt-3">Orações</h2>
+<p *ngIf="!selectedPrayer.nome" class="w-100 text-center mt-1 mb-3 bold">Aprenda orações centrais da Fé Católica</p>
 
-<div *ngFor="let prayer of prayers" class="prayers mb-3">
-    <div class="prayer d-flex justify-content-center w-100 my-1">
-        <app-button [width]="'100%'" [text]="prayer.nome"></app-button>
+<app-loader *ngIf="!allLoaded" class="w-100 d-flex justify-content-center"></app-loader>
+
+<div *ngIf="allLoaded && !selectedPrayer.nome">
+    <div *ngFor="let prayer of prayers" class="prayers mb-3">
+        <div class="prayer d-flex justify-content-center w-100 my-1">
+            <app-button (click)="selectPrayer(prayer)" [width]="'100%'" [text]="prayer.nome"></app-button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="allLoaded && selectedPrayer.nome" class="selected-prayer container mt-3">
+    <div class="w-100 d-flex justify-content-center align-items-center gap-2 mb-3">
+        <i class="fa-sharp fa-solid fa-left pointer" (click)="selectedPrayer = {}"></i>
+        <h4 class="text-center m-0">{{ selectedPrayer.nome }}</h4>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-start gap-5 mt-4">
+        <div class="w-100 w-md-50">
+            <h5 class="text-center mb-3">Português</h5>
+            <p class="prayer-text">{{ selectedPrayer.oracao }}</p>
+        </div>
+        <div class="w-100 w-md-50">
+            <h5 class="text-center mb-3">Latim</h5>
+            <p class="prayer-text">{{ selectedPrayer.oracao_latim }}</p>
+        </div>
     </div>
 </div>
