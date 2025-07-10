@@ -1,0 +1,8 @@
+<h2 class="w-100 text-center mt-3">Orações</h2>
+<p class="w-100 text-center mt-1 mb-3 bold">Aprenda orações centrais da Fé Católica</p>
+
+<div *ngFor="let prayer of prayers" class="prayers mb-3">
+    <div class="prayer d-flex justify-content-center w-100 my-1">
+        <app-button [width]="'100%'" [text]="prayer.nome"></app-button>
+    </div>
+</div>

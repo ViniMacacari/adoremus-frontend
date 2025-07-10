@@ -1,0 +1,16 @@
+.prayers {
+    @media (max-width: 768px) {
+        .prayer {
+            app-button {
+                width: 100%;
+            }
+        }
+
+    }
+
+    .prayer {
+        app-button {
+            width: 400px;
+        }
+    }
+}

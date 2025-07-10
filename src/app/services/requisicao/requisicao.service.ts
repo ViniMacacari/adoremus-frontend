@@ -32,6 +32,37 @@ export class RequestService {
     )
   }
 
+  async getPaginated(endpoint: string, options?: any): Promise<any[]> {
+    const headers = this.createHeaders()
+    const allItems: any[] = []
+    let page = 1
+    let totalPages = 1
+
+    do {
+      const config: any = {
+        headers,
+        withCredentials: false,
+        params: { pagina: page }
+      }
+
+      if (options) {
+        Object.assign(config.params, options)
+      }
+
+      const response: any = await firstValueFrom(
+        this.http.get(`${this.url}${endpoint}`, config).pipe(
+          catchError(this.handleError)
+        )
+      )
+
+      allItems.push(...response.dados)
+      totalPages = response.totalPaginas
+      page++
+    } while (page <= totalPages)
+
+    return allItems
+  }
+
   async post(complemento: string, body: any): Promise<any> {
     const headers = this.createHeaders()
     return firstValueFrom(
