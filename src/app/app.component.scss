@@ -10,7 +10,7 @@ app-menu {
     padding-top: 50px;
     padding-left: 60px;
     padding-right: 60px;
-    height: 100%;
+    min-height: 100%;
 
     @media (max-width: 600px) {
         padding-left: 20px !important;
