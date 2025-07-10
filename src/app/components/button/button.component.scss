@@ -1,5 +1,6 @@
 button {
     background-color: #3a0a0a;
+    background-image: radial-gradient(circle at center top, #521a1a 0%, #3a0a0a 80%);
     color: #ada886;
     border: none;
     padding: 10px 20px;
@@ -10,5 +11,6 @@ button {
 
     &:hover {
         background-color: #210808;
+        background-image: none;
     }
 }
