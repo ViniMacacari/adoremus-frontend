@@ -21,3 +21,31 @@
     border: 1px solid #333;
     font-size: 0.85rem;
 }
+
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        overflow-x: hidden;
+    }
+
+    .calendar-cell {
+        min-height: 80px;
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        word-break: break-word;
+    }
+
+    .calendar-header {
+        font-size: 0.75rem;
+        padding: 0.4rem;
+        word-break: break-word;
+    }
+
+    .description {
+        display: none !important;
+    }
+
+    .info-primary {
+        font-size: .9em;
+    }
+}
