@@ -12,4 +12,5 @@ export class ButtonComponent {
   @Input() text: string = 'Click Me'
   @Input() fontSize: string = '1em'
   @Input() width: string = 'auto'
+  @Input() height: string = 'auto'
 }

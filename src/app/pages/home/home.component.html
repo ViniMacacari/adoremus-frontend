@@ -25,23 +25,33 @@
         <div class="row">
             <div class="col-md-6 d-flex justify-content-center flex-wrap gap-3">
                 <div class="d-flex flex-column gap-3 flex-grow-1">
-                    <div class="p-3 rows-actions bible shadow-sm">
+                    <div class="p-3 d-flex flex-column justify-content-center rows-actions bible shadow-sm">
                         <h5 class="mb-2">Lectio Divina</h5>
-                        <p class="mb-0">Conteúdo da Lectio Divina...</p>
+                        <p class="mb-0">Leia e reflita a palavra de Deus</p>
                     </div>
 
-                    <div class="p-3 rows-actions calendar shadow-sm">
+                    <div class="p-3 d-flex flex-column justify-content-center rows-actions calendar shadow-sm">
                         <h5 class="mb-2">Calendário Litúrgico</h5>
-                        <p class="mb-0">Conteúdo do calendário...</p>
+                        <p class="mb-0">Veja dias de preceitos, solenidades e mais!</p>
                     </div>
                 </div>
 
-                <div class="ms-3 d-flex align-items-center">
+                <div class="ms-3 d-flex flex-column align-items-center">
                     <img src="/img/saint-benedict.png" alt="São Bento" class="saint-benedict">
+                    <p class="mb-0">"Crux sacra sit mihi lux!"</p>
                 </div>
             </div>
 
-            <div class="col-md-6"></div>
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-start px-4">
+                <h2 class="fw-bold w-100 text-center mb-3">Em defesa da doutrina</h2>
+                <p class="text-center w-100 mb-3">
+                    Leia reflexões e artigos que protegem a fé católica com base no Magistério, na Sagrada Tradição e
+                    nas Escrituras.
+                </p>
+                <div class="w-100 d-flex align-items-center justify-content-center">
+                    <app-button [text]="'Acessar o blog'" [height]="'100%'" [fontSize]="'1.3em'"></app-button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
