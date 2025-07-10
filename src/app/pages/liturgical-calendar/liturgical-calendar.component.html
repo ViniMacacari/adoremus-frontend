@@ -1,10 +1,16 @@
 <app-loader *ngIf="!allLoaded" class="w-100 d-flex align-items-center justify-content-center my-3"></app-loader>
 
 <div class="d-flex flex-column">
-    <div class="w-100 d-flex justify-content-center align-items-center gap-3 my-3">
-        <div class="month-arrow pointer light" (click)="previousMonth()" [class.disabled]="currentMonth === 1">‹</div>
-        <h3 class="mb-0 month">{{ monthName }}</h3>
-        <div class="month-arrow pointer light" (click)="nextMonth()" [class.disabled]="currentMonth === 12">›</div>
+    <div class="w-100 d-flex justify-content-center align-items-center gap-3 my-2">
+        <div class="month-arrow pointer light" (click)="previousYear()">‹</div>
+        <h4 class="mb-0 filter">{{ currentYear }}</h4>
+        <div class="month-arrow pointer light" (click)="nextYear()">›</div>
+    </div>
+
+    <div class="w-100 d-flex justify-content-center align-items-center gap-3 mb-3">
+        <div class="month-arrow pointer light" (click)="previousMonth()">‹</div>
+        <h3 class="mb-0 filter">{{ monthName }}</h3>
+        <div class="month-arrow pointer light" (click)="nextMonth()">›</div>
     </div>
     <div class="calendar-grid my-3">
         <div class="calendar-header">Dom</div>

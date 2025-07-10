@@ -16,18 +16,18 @@ export class LiturgicalCalendarComponent {
   monthName: string = ''
   calendarGrid: any[][] = []
 
-  currentMonth: number = 1
-  currentYear: number = 2025
+  currentMonth: number
+  currentYear: number
 
-  constructor(
-    private request: RequestService
-  ) { }
+  constructor(private request: RequestService) {
+    const today = new Date()
+    this.currentMonth = today.getMonth() + 1
+    this.currentYear = today.getFullYear()
+  }
 
   async ngAfterViewInit(): Promise<void> {
-    setTimeout(async () => {
-      await this.getLiturgy()
-      this.allLoaded = true
-    })
+    await this.getLiturgy()
+    this.allLoaded = true
   }
 
   async getLiturgy(): Promise<void> {
@@ -79,18 +79,40 @@ export class LiturgicalCalendarComponent {
   async previousMonth(): Promise<void> {
     if (this.currentMonth > 1) {
       this.currentMonth--
-      this.allLoaded = false
-      await this.getLiturgy()
-      this.allLoaded = true
+    } else {
+      this.currentMonth = 12
+      this.currentYear--
     }
+
+    this.allLoaded = false
+    await this.getLiturgy()
+    this.allLoaded = true
   }
 
   async nextMonth(): Promise<void> {
     if (this.currentMonth < 12) {
       this.currentMonth++
-      this.allLoaded = false
-      await this.getLiturgy()
-      this.allLoaded = true
+    } else {
+      this.currentMonth = 1
+      this.currentYear++
     }
+
+    this.allLoaded = false
+    await this.getLiturgy()
+    this.allLoaded = true
+  }
+
+  async previousYear(): Promise<void> {
+    this.currentYear--
+    this.allLoaded = false
+    await this.getLiturgy()
+    this.allLoaded = true
+  }
+
+  async nextYear(): Promise<void> {
+    this.currentYear++
+    this.allLoaded = false
+    await this.getLiturgy()
+    this.allLoaded = true
   }
 }
