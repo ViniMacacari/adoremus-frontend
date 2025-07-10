@@ -30,6 +30,7 @@ h3,
 h4,
 h5,
 h6,
+strong,
 a {
     margin: 0;
 
@@ -50,12 +51,21 @@ span,
 li,
 ul,
 blockquote,
+small,
 button {
     font-family: "Caudex Regular", sans-serif;
     font-weight: normal;
     font-style: normal;
 
     color: #ada886;
+}
+
+.secondary {
+    color: #726e58;
+}
+
+.light {
+    color: #cfc9a1;
 }
 
 .btn-page {

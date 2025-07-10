@@ -1,1 +1,29 @@
-<p>liturgical-calendar works!</p>
+<app-loader *ngIf="!allLoaded" class="w-100 d-flex align-items-center justify-content-center my-3"></app-loader>
+
+<div class="calendar-grid mt-3">
+    <div class="calendar-header">Dom</div>
+    <div class="calendar-header">Seg</div>
+    <div class="calendar-header">Ter</div>
+    <div class="calendar-header">Qua</div>
+    <div class="calendar-header">Qui</div>
+    <div class="calendar-header">Sex</div>
+    <div class="calendar-header">Sáb</div>
+
+    <ng-container *ngFor="let week of calendarGrid">
+        <ng-container *ngFor="let day of week">
+            <div class="calendar-cell" [ngClass]="{
+               'bg-preceito': day?.preceito,
+               'bg-solene': day?.tipo === 'solenidade',
+               'bg-festa': day?.tipo === 'festa',
+               'bg-memoria': day?.tipo === 'memória',
+               'bg-comum': day && !day.preceito && day.tipo === 'dia de semana'
+             }">
+                <div *ngIf="day">
+                    <small class="secondary">{{ day.data | date: 'd' }}</small><br>
+                    <p class="mb-0">{{ day.preceito ? day.descricao : day.descricao }}</p><br>
+                    <p class="light">{{ day.preceito ? 'Preceito' : day.tipo }}</p>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

@@ -1,0 +1,23 @@
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    border: 1px solid #666;
+}
+
+.calendar-header {
+    text-align: center;
+    font-weight: bold;
+    background: #210808;
+    padding: 0.5rem;
+    color: #fff;
+    border-bottom: 1px solid #444;
+}
+
+.calendar-cell {
+    min-height: 120px;
+    padding: 0.5rem;
+    color: #ddd;
+    border: 1px solid #333;
+    font-size: 0.85rem;
+}
