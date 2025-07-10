@@ -16,6 +16,9 @@ export class LiturgicalCalendarComponent {
   monthName: string = ''
   calendarGrid: any[][] = []
 
+  currentMonth: number = 1
+  currentYear: number = 2025
+
   constructor(
     private request: RequestService
   ) { }
@@ -28,13 +31,16 @@ export class LiturgicalCalendarComponent {
   }
 
   async getLiturgy(): Promise<void> {
-    const result = await this.request.get('/liturgia/calendario/2025/1')
+    const result = await this.request.get(`/liturgia/calendario/${this.currentYear}/${this.currentMonth}`)
 
     if (result?.dados) {
       const entries: any = Object.entries(result.dados)
-      this.monthName = entries[0][0]
-      const days: any[] = entries[0][1]
+      let rawMonth = entries[0][0]
 
+      if (rawMonth.toLowerCase() === 'marco') rawMonth = 'Março'
+
+      this.monthName = rawMonth
+      const days: any[] = entries[0][1]
       this.calendarGrid = this.buildCalendarGrid(days)
     }
   }
@@ -68,5 +74,23 @@ export class LiturgicalCalendarComponent {
     }
 
     return grid
+  }
+
+  async previousMonth(): Promise<void> {
+    if (this.currentMonth > 1) {
+      this.currentMonth--
+      this.allLoaded = false
+      await this.getLiturgy()
+      this.allLoaded = true
+    }
+  }
+
+  async nextMonth(): Promise<void> {
+    if (this.currentMonth < 12) {
+      this.currentMonth++
+      this.allLoaded = false
+      await this.getLiturgy()
+      this.allLoaded = true
+    }
   }
 }

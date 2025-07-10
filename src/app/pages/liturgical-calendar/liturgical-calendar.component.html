@@ -1,8 +1,12 @@
 <app-loader *ngIf="!allLoaded" class="w-100 d-flex align-items-center justify-content-center my-3"></app-loader>
 
-<div class="d-flex">
-    <h3></h3>
-    <div class="calendar-grid mt-3">
+<div class="d-flex flex-column">
+    <div class="w-100 d-flex justify-content-center align-items-center gap-3 my-3">
+        <div class="month-arrow pointer light" (click)="previousMonth()" [class.disabled]="currentMonth === 1">‹</div>
+        <h3 class="mb-0 month">{{ monthName }}</h3>
+        <div class="month-arrow pointer light" (click)="nextMonth()" [class.disabled]="currentMonth === 12">›</div>
+    </div>
+    <div class="calendar-grid my-3">
         <div class="calendar-header">Dom</div>
         <div class="calendar-header">Seg</div>
         <div class="calendar-header">Ter</div>
@@ -10,7 +14,7 @@
         <div class="calendar-header">Qui</div>
         <div class="calendar-header">Sex</div>
         <div class="calendar-header">Sáb</div>
-    
+
         <ng-container *ngFor="let week of calendarGrid">
             <ng-container *ngFor="let day of week">
                 <div class="calendar-cell" [ngClass]="{
