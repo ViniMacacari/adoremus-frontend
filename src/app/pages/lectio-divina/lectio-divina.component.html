@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <h1 class="w-100 text-center mt-3">Lectio Divina</h1>
+        <p class="text-center" style="max-width: 600px;">A Lectio Divina é uma forma de ler, meditar, contemplar e orar,
+            com o auxílio da liturgia diária e de acordo com a
+            verdadeira interpretação da
+            Palavra de Cristo, basendo-se na doutrina da Santa Igreja Católica.</p>
+    </div>
+</div>
+
+<app-loader class="w-100 d-flex justify-content-center"></app-loader>
+
+<div class="d-flex justify-content-center my-5">
+    <input type="text" class="form-control w-50 rounded shadow" bsDatepicker [bsConfig]="bsConfig"
+        [datesDisabled]="disabledDates" [(ngModel)]="selectedDate" (bsValueChange)="onDateChange($event)"
+        placeholder="Selecione uma data com Lectio" readonly />
+</div>
