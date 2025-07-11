@@ -1,12 +1,22 @@
-.calendar-container {
-    min-width: 400px;
-    margin: auto;
-    color: #fdf5e6;
-}
-
 .calendar-popup {
     min-width: 400px;
     background-color: #2d1f1f;
+
+    .calendar-container {
+        min-width: 400px;
+        margin: auto;
+        color: #fdf5e6;
+    }
+
+    @media (max-width: 500px) {
+        min-width: 300px !important;
+        max-width: 100% !important;
+
+        .calendar-container {
+            min-width: 300px !important;
+            max-width: 100% !important;
+        }
+    }
 }
 
 .calendar-header h5 {

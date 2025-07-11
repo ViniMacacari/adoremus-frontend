@@ -83,6 +83,14 @@ export class LectioDivinaComponent implements OnInit {
     }
 
     this.calendarDays = days
+
+    if (this.selectedDate) {
+      const selectedKey = this.keyOf(this.selectedDate)
+      const match = days.find(d => d.date && this.keyOf(d.date) === selectedKey)
+      if (match) {
+        this.selectedDate = match.date
+      }
+    }
   }
 
   prevMonth(): void {
