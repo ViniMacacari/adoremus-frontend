@@ -30,9 +30,9 @@
                    'bg-memoria': day?.tipo === 'memória',
                    'bg-comum': day && !day.preceito && day.tipo === 'dia de semana'
                  }">
-                    <div *ngIf="day">
+                    <div *ngIf="day" class="d-flex flex-column h-100">
                         <small class="secondary">{{ day.data | date: 'd' }}</small><br>
-                        <p class="mb-0 description">{{ day.preceito ? day.descricao : day.descricao }}</p><br>
+                        <p class="mb-0 h-100 description">{{ day.preceito ? day.descricao : day.descricao }}</p><br>
                         <p class="light info-primary">{{ day.preceito ? 'Preceito' : day.tipo }}</p>
                         <div class="liturgical-flag" [ngClass]="getLiturgicalColor(day?.tempo)"></div>
                     </div>

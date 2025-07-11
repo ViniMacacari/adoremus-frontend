@@ -27,6 +27,8 @@
     font-size: 0.85rem;
     background-color: #0e0808;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .month-arrow {
@@ -89,6 +91,7 @@
     }
 
     .description {
+        min-height: 100%;
         display: none !important;
     }
 
