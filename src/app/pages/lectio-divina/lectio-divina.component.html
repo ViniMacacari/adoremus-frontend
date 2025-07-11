@@ -11,7 +11,7 @@
 
 <app-loader *ngIf="!loadedAll" class="w-100 d-flex justify-content-center my-3"></app-loader>
 
-<div *ngIf="loadedAll" class="d-flex justify-content-center my-3">
+<div *ngIf="loadedAll" class="d-flex flex-column justify-content-center container my-3">
     <div #calendarContainer class="d-flex justify-content-center calendar-wrapper" style="position: relative;">
         <app-button (click)="toggleCalendar()"
             [text]="selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data'"></app-button>
@@ -34,4 +34,6 @@
             </div>
         </div>
     </div>
+
+    <div *ngIf="safeLectioHtml" class="mt-4 ql-editor content-lectio" [innerHTML]="safeLectioHtml"></div>
 </div>

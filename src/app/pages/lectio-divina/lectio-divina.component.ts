@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener, ViewEncapsulation } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
 import { ButtonComponent } from "../../components/button/button.component"
@@ -10,8 +11,7 @@ import { ButtonComponent } from "../../components/button/button.component"
   standalone: true,
   imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent],
   templateUrl: './lectio-divina.component.html',
-  styleUrl: './lectio-divina.component.scss',
-  encapsulation: ViewEncapsulation.None
+  styleUrl: './lectio-divina.component.scss'
 })
 export class LectioDivinaComponent implements OnInit {
   currentMonth: number = new Date().getMonth()
@@ -23,6 +23,7 @@ export class LectioDivinaComponent implements OnInit {
   selectedDate: Date | null = null
   loadedAll: boolean = false
   lectioToday: any = null
+  safeLectioHtml: SafeHtml | null = null
 
   @ViewChild('calendarContainer') calendarContainer!: ElementRef
 
@@ -43,7 +44,10 @@ export class LectioDivinaComponent implements OnInit {
     return new Date(this.currentYear, this.currentMonth).toLocaleString('pt-BR', { month: 'long' }).toUpperCase()
   }
 
-  constructor(private request: RequestService) { }
+  constructor(
+    private request: RequestService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   async ngOnInit(): Promise<void> {
     await this.loadLectioDates()
@@ -56,8 +60,6 @@ export class LectioDivinaComponent implements OnInit {
       this.selectedDate = today
       this.loadSpecificLectio(lectio.id)
     }
-
-    this.loadedAll = true
   }
 
   async loadLectioDates(): Promise<void> {
@@ -155,8 +157,65 @@ export class LectioDivinaComponent implements OnInit {
     const result = await this.request.get(`/lectio-divina/${id}`)
     this.lectioToday = result.dados.lectio
 
-    this.loadedAll = true
+    let cleanHtml = this.lectioToday.conteudo
 
-    console.log(this.lectioToday)
+    cleanHtml = cleanHtml.replace(/<p><\/p>/g, '<p><br></p>')
+    const sanitized = this.sanitizeHtml(cleanHtml)
+    this.safeLectioHtml = this.sanitizer.bypassSecurityTrustHtml(sanitized)
+
+    this.loadedAll = true
+  }
+
+  sanitizeHtml(rawHtml: string): string {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(rawHtml, 'text/html')
+
+    const allowedTags = [
+      'P', 'BR', 'STRONG', 'EM', 'B', 'I', 'U', 'S',
+      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+      'UL', 'OL', 'LI', 'BLOCKQUOTE',
+      'A', 'IMG', 'PRE', 'CODE',
+      'SPAN', 'DIV'
+    ]
+
+    const elements = doc.body.querySelectorAll('*') as NodeListOf<HTMLElement>
+
+    elements.forEach(el => {
+      if (!allowedTags.includes(el.tagName)) {
+        el.remove()
+        return
+      }
+
+      const attrs = Array.from(el.attributes)
+      for (const attr of attrs) {
+        const name = attr.name.toLowerCase()
+        const value = attr.value.toLowerCase()
+
+        if (name.startsWith('on') || name === 'style') {
+          el.removeAttribute(attr.name)
+          continue
+        }
+
+        if (name === 'href') {
+          if (value.startsWith('javascript:')) {
+            el.removeAttribute(attr.name)
+          }
+          continue
+        }
+
+        if (name === 'src') {
+          const isValid =
+            value.startsWith('http://') ||
+            value.startsWith('https://') ||
+            value.startsWith('data:image/')
+          if (!isValid) {
+            el.removeAttribute(attr.name)
+          }
+          continue
+        }
+      }
+    })
+
+    return doc.body.innerHTML
   }
 }

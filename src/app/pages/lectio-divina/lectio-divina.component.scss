@@ -72,3 +72,8 @@
     background-color: #fff3cd !important;
     color: black !important;
 }
+
+.ql-editor p:empty::after {
+    content: '\00a0';
+    display: block;
+}
