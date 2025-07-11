@@ -65,7 +65,7 @@ export class LectioDivinaComponent implements OnInit {
     for (const i of items) {
       const d = new Date(i.data)
       const key = this.keyOf(d)
-      this.lectioMap[key] = true
+      this.lectioMap[key] = i
     }
 
     this.generateCalendar()
