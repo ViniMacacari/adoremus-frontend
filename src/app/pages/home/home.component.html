@@ -5,7 +5,8 @@
                 ADORARTE
                 <br> DEVEMUS
             </h1>
-            <app-button (click)="navigate('/oracoes')" class="mt-3" [text]="'SAIBA MAIS'" [fontSize]="'1.3em'"></app-button>
+            <app-button (click)="navigate('/oracoes')" class="mt-3" [text]="'SAIBA MAIS'"
+                [fontSize]="'1.3em'"></app-button>
         </div>
         <div class="presentation-liturgy-day">
             <app-loader *ngIf="!allLoaded"></app-loader>
@@ -25,12 +26,14 @@
         <div class="row">
             <div class="col-md-6 d-flex justify-content-center flex-wrap gap-3">
                 <div class="d-flex flex-column gap-3 flex-grow-1">
-                    <div class="p-3 d-flex flex-column justify-content-center rows-actions bible shadow-sm pointer">
+                    <div class="p-3 d-flex flex-column justify-content-center rows-actions bible shadow-sm pointer"
+                        (click)="navigate('/lectio-divina')">
                         <h5 class="mb-2 pointer">Lectio Divina</h5>
                         <p class="mb-0 pointer">Leia e reflita a palavra de Deus</p>
                     </div>
 
-                    <div class="p-3 d-flex flex-column justify-content-center rows-actions calendar shadow-sm pointer" (click)="navigate('/ano-liturgico')">
+                    <div class="p-3 d-flex flex-column justify-content-center rows-actions calendar shadow-sm pointer"
+                        (click)="navigate('/ano-liturgico')">
                         <h5 class="mb-2 pointer">Calendário Litúrgico</h5>
                         <p class="mb-0 pointer">Veja dias de preceitos, solenidades e mais!</p>
                     </div>
