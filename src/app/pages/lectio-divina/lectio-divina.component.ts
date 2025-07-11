@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
+import { ButtonComponent } from "../../components/button/button.component"
 
 @Component({
   selector: 'app-lectio-divina',
   standalone: true,
-  imports: [CommonModule, FormsModule, LoaderComponent],
+  imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent],
   templateUrl: './lectio-divina.component.html',
   styleUrl: './lectio-divina.component.scss',
   encapsulation: ViewEncapsulation.None
@@ -20,6 +21,7 @@ export class LectioDivinaComponent implements OnInit {
   lectioMap: Record<string, boolean> = {}
   calendarVisible = false
   selectedDate: Date | null = null
+  loadedAll: boolean = false
 
   get monthName(): string {
     return new Date(this.currentYear, this.currentMonth).toLocaleString('pt-BR', { month: 'long' }).toUpperCase()
@@ -27,8 +29,8 @@ export class LectioDivinaComponent implements OnInit {
 
   constructor(private request: RequestService) { }
 
-  ngOnInit(): void {
-    this.loadLectioDates().then(() => {
+  async ngOnInit(): Promise<void> {
+    await this.loadLectioDates().then(() => {
       const today = new Date()
       const key = this.keyOf(today)
 
@@ -36,6 +38,8 @@ export class LectioDivinaComponent implements OnInit {
         this.selectedDate = today
       }
     })
+
+    this.loadedAll = true
   }
 
   async loadLectioDates(): Promise<void> {
