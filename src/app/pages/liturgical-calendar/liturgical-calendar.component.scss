@@ -25,10 +25,39 @@
     color: #ddd;
     font-size: 0.85rem;
     background-color: #0e0808;
+    position: relative;
 }
 
 .month-arrow {
     user-select: none;
+}
+
+.liturgical-flag {
+    position: absolute;
+    left: 0.4rem;
+    bottom: 0.4rem;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-left: 12px solid;
+    z-index: 3;
+    border-radius: 2px;
+}
+
+.liturgical-green {
+    border-left-color: #487849;
+}
+
+.liturgical-purple {
+    border-left-color: #9c27b0;
+}
+
+.liturgical-white {
+    border-left-color: #f5f5f5;
+}
+
+.liturgical-red {
+    border-left-color: #f44336;
 }
 
 @media (max-width: 768px) {

@@ -115,4 +115,19 @@ export class LiturgicalCalendarComponent {
     await this.getLiturgy()
     this.allLoaded = true
   }
+
+  getLiturgicalColor(tempo: string | undefined): string {
+    if (!tempo) return ''
+
+    const tempoLower = tempo.toLowerCase()
+
+    if (tempoLower.includes('comum')) return 'liturgical-green'
+    if (tempoLower.includes('quaresma')) return 'liturgical-purple'
+    if (tempoLower.includes('advento')) return 'liturgical-purple'
+    if (tempoLower.includes('páscoa')) return 'liturgical-white'
+    if (tempoLower.includes('natal')) return 'liturgical-white'
+    if (tempoLower.includes('pentecostes')) return 'liturgical-red'
+
+    return ''
+  }
 }
