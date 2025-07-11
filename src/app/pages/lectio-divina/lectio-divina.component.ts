@@ -22,6 +22,7 @@ export class LectioDivinaComponent implements OnInit {
   calendarVisible = false
   selectedDate: Date | null = null
   loadedAll: boolean = false
+  lectioToday: any = null
 
   @ViewChild('calendarContainer') calendarContainer!: ElementRef
 
@@ -45,14 +46,16 @@ export class LectioDivinaComponent implements OnInit {
   constructor(private request: RequestService) { }
 
   async ngOnInit(): Promise<void> {
-    await this.loadLectioDates().then(() => {
-      const today = new Date()
-      const key = this.keyOf(today)
+    await this.loadLectioDates()
 
-      if (this.lectioMap[key]) {
-        this.selectedDate = today
-      }
-    })
+    const today = new Date()
+    const key = this.keyOf(today)
+
+    const lectio: any = this.lectioMap[key]
+    if (lectio) {
+      this.selectedDate = today
+      this.loadSpecificLectio(lectio.id)
+    }
 
     this.loadedAll = true
   }
@@ -136,7 +139,7 @@ export class LectioDivinaComponent implements OnInit {
 
     const key = this.keyOf(day.date)
     const lectio: any = this.lectioMap[key]
-    if (lectio) console.log('Lectio ID:', lectio.id)
+    if (lectio) this.loadSpecificLectio(lectio.id)
   }
 
   private keyOf(d: Date): string {
@@ -144,5 +147,16 @@ export class LectioDivinaComponent implements OnInit {
     const m = String(d.getMonth() + 1).padStart(2, '0')
     const day = String(d.getDate()).padStart(2, '0')
     return `${y}-${m}-${day}`
+  }
+
+  async loadSpecificLectio(id: number): Promise<void> {
+    this.loadedAll = false
+
+    const result = await this.request.get(`/lectio-divina/${id}`)
+    this.lectioToday = result.dados.lectio
+
+    this.loadedAll = true
+
+    console.log(this.lectioToday)
   }
 }
