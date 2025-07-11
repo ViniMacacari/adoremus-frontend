@@ -1,12 +1,13 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from "../../components/loader/loader.component"
+import { ModalLiturgicalInfoComponent } from '../../components/modal-liturgical-info/modal-liturgical-info.component'
 
 @Component({
   selector: 'app-liturgical-calendar',
   standalone: true,
-  imports: [LoaderComponent, CommonModule],
+  imports: [LoaderComponent, CommonModule, ModalLiturgicalInfoComponent],
   templateUrl: './liturgical-calendar.component.html',
   styleUrl: './liturgical-calendar.component.scss'
 })
@@ -18,6 +19,8 @@ export class LiturgicalCalendarComponent {
 
   currentMonth: number
   currentYear: number
+
+  @ViewChild(ModalLiturgicalInfoComponent) modal!: ModalLiturgicalInfoComponent
 
   constructor(private request: RequestService) {
     const today = new Date()

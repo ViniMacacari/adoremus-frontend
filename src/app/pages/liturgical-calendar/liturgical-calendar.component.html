@@ -23,7 +23,7 @@
 
         <ng-container *ngFor="let week of calendarGrid">
             <ng-container *ngFor="let day of week">
-                <div class="calendar-cell" [ngClass]="{
+                <div class="calendar-cell pointer" (click)="modal.show(day)" [ngClass]="{
                    'bg-preceito': day?.preceito,
                    'bg-solene': day?.tipo === 'solenidade',
                    'bg-festa': day?.tipo === 'festa',
@@ -41,3 +41,5 @@
         </ng-container>
     </div>
 </div>
+
+<app-modal-liturgical-info></app-modal-liturgical-info>

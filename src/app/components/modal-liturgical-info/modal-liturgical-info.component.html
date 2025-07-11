@@ -1,0 +1,28 @@
+<div *ngIf="isLoading" class="modal fade show" tabindex="-1" style="display: block; background-color: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <h1>Informações</h1>
+                <hr>
+
+                <h4 class="mb-0">Dia Litúrgico</h4>
+                <p class="mt-0 mb-3">{{info.descricao}}</p>
+
+                <h4 class="mb-0">Tempo Litúrgico</h4>
+                <p class="mt-0 mb-3">{{info.tempo}}</p>
+
+                <h4 class="mb-0">Dia da Semana</h4>
+                <p class="mt-0 mb-3">{{info.dia_semana | capitalizeFirst}}</p>
+
+                <h4 class="mb-0">Tipo de Celebração</h4>
+                <p class="mt-0 mb-3">{{info.tipo | capitalizeFirst}}</p>
+
+                <h4 class="mb-0">Dia de Preceito?</h4>
+                <p class="mt-0 mb-3">{{info.preceito ? 'Sim' : 'Não'}}</p>
+
+                <hr>
+                <app-button [text]="'Fechar'" (click)="isLoading = false"></app-button>
+            </div>
+        </div>
+    </div>
+</div>
