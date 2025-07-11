@@ -28,7 +28,14 @@ export class LectioDivinaComponent implements OnInit {
   constructor(private request: RequestService) { }
 
   ngOnInit(): void {
-    this.loadLectioDates()
+    this.loadLectioDates().then(() => {
+      const today = new Date()
+      const key = this.keyOf(today)
+
+      if (this.lectioMap[key]) {
+        this.selectedDate = today
+      }
+    })
   }
 
   async loadLectioDates(): Promise<void> {
@@ -58,7 +65,7 @@ export class LectioDivinaComponent implements OnInit {
     const days: { date: Date; hasLectio: boolean; active: boolean }[] = []
 
     for (let i = 0; i < startWeekDay; i++) {
-      days.push({ date: new Date(), hasLectio: false, active: false })
+      days.push({ date: null as any, hasLectio: false, active: false })
     }
 
     for (let i = 1; i <= totalDays; i++) {
@@ -94,17 +101,15 @@ export class LectioDivinaComponent implements OnInit {
     this.generateCalendar()
   }
 
-  selectDate(day: { date: Date; hasLectio: boolean; active: boolean }): void {
+  selectDate(day: any): void {
     if (!day.active) return
+
+    this.selectedDate = day.date
+    this.calendarVisible = false
 
     const key = this.keyOf(day.date)
     const lectio: any = this.lectioMap[key]
-
-    if (lectio) {
-      this.selectedDate = day.date
-      this.calendarVisible = false
-      console.log('Lectio ID:', lectio.id)
-    }
+    if (lectio) console.log('Lectio ID:', lectio.id)
   }
 
   private keyOf(d: Date): string {

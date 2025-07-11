@@ -1,23 +1,22 @@
 <div class="container">
     <div class="d-flex flex-column align-items-center justify-content-center">
         <h1 class="w-100 text-center mt-3">Lectio Divina</h1>
-        <p class="text-center" style="max-width: 600px;">A Lectio Divina é uma forma de ler, meditar, contemplar e orar,
-            com o auxílio da liturgia diária e de acordo com a
-            verdadeira interpretação da
-            Palavra de Cristo, basendo-se na doutrina da Santa Igreja Católica.</p>
+        <p class="text-center" style="max-width: 600px;">
+            A Lectio Divina é uma forma de ler, meditar, contemplar e orar, com o auxílio da liturgia diária e de acordo
+            com a
+            verdadeira interpretação da Palavra de Cristo, basendo-se na doutrina da Santa Igreja Católica.
+        </p>
     </div>
 </div>
 
 <app-loader class="w-100 d-flex justify-content-center"></app-loader>
 
-<div class="d-flex justify-content-center my-4">
+<div class="d-flex justify-content-center my-4 calendar-wrapper" style="position: relative;">
     <button class="btn btn-outline-light" (click)="toggleCalendar()">
         {{ selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data' }}
     </button>
-</div>
 
-<div *ngIf="calendarVisible">
-    <div class="calendar-container">
+    <div *ngIf="calendarVisible" class="calendar-popup p-3 rounded shadow">
         <div class="calendar-header d-flex justify-content-between align-items-center mb-3">
             <button class="btn btn-sm btn-outline-light" (click)="prevMonth()">&lt;</button>
             <h5 class="mb-0">{{ monthName }} {{ currentYear }}</h5>
@@ -27,8 +26,10 @@
         <div class="calendar-grid">
             <div class="day-name" *ngFor="let d of weekDays">{{ d }}</div>
             <div class="day-cell" *ngFor="let day of calendarDays" [class.inactive]="!day.active"
-                [class.lectio]="day.hasLectio" (click)="selectDate(day)">
-                {{ day.date.getDate() }}
+                [class.lectio]="day.hasLectio"
+                [class.selected]="selectedDate && day.date && day.date.toDateString() === selectedDate.toDateString()"
+                (click)="selectDate(day)">
+                {{ day.date ? day.date.getDate() : '' }}
             </div>
         </div>
     </div>
