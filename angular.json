@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/quill/dist/quill.snow.css",
               "public/super-icons/all.css",
               "public/super-icons/duotone-light.css",
               "public/super-icons/duotone-regular.css",
