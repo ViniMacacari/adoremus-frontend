@@ -12,7 +12,7 @@
 <app-loader *ngIf="!loadedAll" class="w-100 d-flex justify-content-center my-3"></app-loader>
 
 <div *ngIf="loadedAll" class="d-flex justify-content-center my-3">
-    <div class="d-flex justify-content-center calendar-wrapper" style="position: relative;">
+    <div #calendarContainer class="d-flex justify-content-center calendar-wrapper" style="position: relative;">
         <app-button (click)="toggleCalendar()"
             [text]="selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data'"></app-button>
 

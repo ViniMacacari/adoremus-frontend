@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core'
+import { Component, OnInit, ViewChild, ElementRef, HostListener, ViewEncapsulation } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { RequestService } from '../../services/requisicao/requisicao.service'
@@ -22,6 +22,21 @@ export class LectioDivinaComponent implements OnInit {
   calendarVisible = false
   selectedDate: Date | null = null
   loadedAll: boolean = false
+
+  @ViewChild('calendarContainer') calendarContainer!: ElementRef
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    const target = event.target as HTMLElement
+
+    if (
+      this.calendarVisible &&
+      this.calendarContainer &&
+      !this.calendarContainer.nativeElement.contains(target)
+    ) {
+      this.calendarVisible = false
+    }
+  }
 
   get monthName(): string {
     return new Date(this.currentYear, this.currentMonth).toLocaleString('pt-BR', { month: 'long' }).toUpperCase()
