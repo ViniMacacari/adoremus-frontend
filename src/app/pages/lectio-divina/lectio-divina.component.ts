@@ -1,70 +1,110 @@
 import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
-import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
 
 @Component({
   selector: 'app-lectio-divina',
   standalone: true,
-  imports: [CommonModule, FormsModule, BsDatepickerModule, LoaderComponent],
+  imports: [CommonModule, FormsModule, LoaderComponent],
   templateUrl: './lectio-divina.component.html',
   styleUrl: './lectio-divina.component.scss',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class LectioDivinaComponent implements OnInit {
-  bsConfig: Partial<BsDatepickerConfig> = {}
-  lectioMap: Record<string, { id: number; passage: string }> = {}
-  disabledDates: Date[] = []
+  currentMonth: number = new Date().getMonth()
+  currentYear: number = new Date().getFullYear()
+  weekDays: string[] = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
+  calendarDays: { date: Date; hasLectio: boolean; active: boolean }[] = []
+  lectioMap: Record<string, boolean> = {}
+  calendarVisible = false
   selectedDate: Date | null = null
 
-  constructor(
-    private request: RequestService,
-    private cdr: ChangeDetectorRef
-  ) { }
+  get monthName(): string {
+    return new Date(this.currentYear, this.currentMonth).toLocaleString('pt-BR', { month: 'long' }).toUpperCase()
+  }
+
+  constructor(private request: RequestService) { }
 
   ngOnInit(): void {
-    this.bsConfig = {
-      dateInputFormat: 'YYYY-MM-DD',
-      showWeekNumbers: false,
-      selectFromOtherMonth: false,
-      containerClass: 'theme-dark'
-    }
     this.loadLectioDates()
   }
 
-  private async loadLectioDates(): Promise<void> {
+  async loadLectioDates(): Promise<void> {
     const resp = await this.request.get('/lectio-divina/datas')
     const items = resp?.dados?.lectio || []
-    const enabled = items.map((i: any) => {
-      const d = this.normalize(new Date(i.data))
-      this.lectioMap[this.keyOf(d)] = { id: i.id, passage: i.passagem }
-      return d
-    })
 
-    const base = enabled.length
-      ? enabled[0]
-      : new Date()
+    this.lectioMap = {}
+    for (const i of items) {
+      const d = new Date(i.data)
+      const key = this.keyOf(d)
+      this.lectioMap[key] = true
+    }
 
-    const year = base.getFullYear()
-    const month = base.getMonth()
-    this.disabledDates = this.buildDisabledDates(year, month, enabled)
-
-    this.cdr.detectChanges()
+    this.generateCalendar()
   }
 
-  private buildDisabledDates(year: number, month: number, enabled: Date[]): Date[] {
-    const total = new Date(year, month + 1, 0).getDate()
-    return Array.from({ length: total }, (_, i) =>
-      this.normalize(new Date(year, month, i + 1))
-    ).filter(d =>
-      !enabled.some(e => e.getTime() === d.getTime())
-    )
+  toggleCalendar(): void {
+    this.calendarVisible = !this.calendarVisible
   }
 
-  private normalize(d: Date): Date {
-    return new Date(d.getFullYear(), d.getMonth(), d.getDate())
+  generateCalendar(): void {
+    const firstDay = new Date(this.currentYear, this.currentMonth, 1)
+    const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0)
+    const startWeekDay = firstDay.getDay()
+    const totalDays = lastDay.getDate()
+
+    const days: { date: Date; hasLectio: boolean; active: boolean }[] = []
+
+    for (let i = 0; i < startWeekDay; i++) {
+      days.push({ date: new Date(), hasLectio: false, active: false })
+    }
+
+    for (let i = 1; i <= totalDays; i++) {
+      const date = new Date(this.currentYear, this.currentMonth, i)
+      const key = this.keyOf(date)
+      days.push({
+        date,
+        hasLectio: !!this.lectioMap[key],
+        active: !!this.lectioMap[key]
+      })
+    }
+
+    this.calendarDays = days
+  }
+
+  prevMonth(): void {
+    if (this.currentMonth === 0) {
+      this.currentMonth = 11
+      this.currentYear--
+    } else {
+      this.currentMonth--
+    }
+    this.generateCalendar()
+  }
+
+  nextMonth(): void {
+    if (this.currentMonth === 11) {
+      this.currentMonth = 0
+      this.currentYear++
+    } else {
+      this.currentMonth++
+    }
+    this.generateCalendar()
+  }
+
+  selectDate(day: { date: Date; hasLectio: boolean; active: boolean }): void {
+    if (!day.active) return
+
+    const key = this.keyOf(day.date)
+    const lectio: any = this.lectioMap[key]
+
+    if (lectio) {
+      this.selectedDate = day.date
+      this.calendarVisible = false
+      console.log('Lectio ID:', lectio.id)
+    }
   }
 
   private keyOf(d: Date): string {
@@ -72,20 +112,5 @@ export class LectioDivinaComponent implements OnInit {
     const m = String(d.getMonth() + 1).padStart(2, '0')
     const day = String(d.getDate()).padStart(2, '0')
     return `${y}-${m}-${day}`
-  }
-
-  onDateChange(date: Date | null): void {
-    if (!date) return
-
-    const d = this.normalize(date)
-    const key = this.keyOf(d)
-    const lectio = this.lectioMap[key]
-
-    if (lectio) {
-      this.selectedDate = d
-      console.log('Lectio ID:', lectio.id)
-    } else {
-      this.selectedDate = null
-    }
   }
 }

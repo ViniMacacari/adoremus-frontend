@@ -10,8 +10,39 @@
 
 <app-loader class="w-100 d-flex justify-content-center"></app-loader>
 
-<div class="d-flex justify-content-center my-5">
-    <input type="text" class="form-control w-50 rounded shadow" bsDatepicker [bsConfig]="bsConfig"
-        [datesDisabled]="disabledDates" [(ngModel)]="selectedDate" (bsValueChange)="onDateChange($event)"
-        placeholder="Selecione uma data com Lectio" readonly />
+<div class="d-flex justify-content-center my-4">
+    <button class="btn btn-outline-light" (click)="toggleCalendar()">
+        {{ selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data' }}
+    </button>
 </div>
+
+<div *ngIf="calendarVisible">
+    <div class="calendar-container">
+        <div class="calendar-header d-flex justify-content-between align-items-center mb-3">
+            <button class="btn btn-sm btn-outline-light" (click)="prevMonth()">&lt;</button>
+            <h5 class="mb-0">{{ monthName }} {{ currentYear }}</h5>
+            <button class="btn btn-sm btn-outline-light" (click)="nextMonth()">&gt;</button>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="day-name" *ngFor="let d of weekDays">{{ d }}</div>
+            <div class="day-cell" *ngFor="let day of calendarDays" [class.inactive]="!day.active"
+                [class.lectio]="day.hasLectio" (click)="selectDate(day)">
+                {{ day.date.getDate() }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptate incidunt vero suscipit vel praesentium
+    aspernatur, repellat quod debitis deleniti quae cumque facilis omnis officia, explicabo laborum repudiandae
+    architecto ea!</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptate incidunt vero suscipit vel praesentium
+    aspernatur, repellat quod debitis deleniti quae cumque facilis omnis officia, explicabo laborum repudiandae
+    architecto ea!</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptate incidunt vero suscipit vel praesentium
+    aspernatur, repellat quod debitis deleniti quae cumque facilis omnis officia, explicabo laborum repudiandae
+    architecto ea!</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptate incidunt vero suscipit vel praesentium
+    aspernatur, repellat quod debitis deleniti quae cumque facilis omnis officia, explicabo laborum repudiandae
+    architecto ea!</p>
