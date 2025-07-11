@@ -158,10 +158,11 @@ export class LectioDivinaComponent implements OnInit {
     this.lectioToday = result.dados.lectio
 
     let cleanHtml = this.lectioToday.conteudo
-
+    cleanHtml = cleanHtml.replace(/&nbsp;/g, ' ')
     cleanHtml = cleanHtml.replace(/<p><\/p>/g, '<p><br></p>')
     const sanitized = this.sanitizeHtml(cleanHtml)
     this.safeLectioHtml = this.sanitizer.bypassSecurityTrustHtml(sanitized)
+    console.log(this.safeLectioHtml)
 
     this.loadedAll = true
   }
