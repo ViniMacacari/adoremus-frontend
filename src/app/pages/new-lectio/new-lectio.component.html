@@ -1,0 +1,28 @@
+<div class="container py-4">
+    <h2 class="mb-3 w-100 text-center">New Lectio Divina</h2>
+
+    <div class="mb-3">
+        <label>Passagem</label>
+        <input type="text" [(ngModel)]="passage">
+    </div>
+
+    <div class="mb-3">
+        <label>Evangelho</label>
+        <textarea rows="4" [(ngModel)]="scriptureText"></textarea>
+    </div>
+
+    <div class="mb-5 d-flex flex-column">
+        <label>Conteúdo</label>
+        <quill-editor [(ngModel)]="content" [style]="{height: '200px'}"></quill-editor>
+    </div>
+
+    <app-button [text]="'Enviar'" (click)="submit()"></app-button>
+
+    <div *ngIf="success" class="alert alert-success mt-3">
+        Lectio submitted successfully.
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        Error: {{ errorMessage }}
+    </div>
+</div>
