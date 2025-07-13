@@ -55,9 +55,19 @@ export class LectioDivinaComponent implements OnInit {
     const today = new Date()
     const key = this.keyOf(today)
 
-    const lectio: any = this.lectioMap[key]
-    if (lectio) {
+    let lectio: any = this.lectioMap[key]
+
+    if (!lectio) {
+      const allDates = Object.keys(this.lectioMap).sort()
+      const lastKey = allDates[allDates.length - 1]
+      lectio = this.lectioMap[lastKey]
+      const [y, m, d] = lastKey.split('-').map(Number)
+      this.selectedDate = new Date(y, m - 1, d)
+    } else {
       this.selectedDate = today
+    }
+
+    if (lectio) {
       this.loadSpecificLectio(lectio.id)
     }
   }
@@ -162,7 +172,6 @@ export class LectioDivinaComponent implements OnInit {
     cleanHtml = cleanHtml.replace(/<p><\/p>/g, '<p><br></p>')
     const sanitized = this.sanitizeHtml(cleanHtml)
     this.safeLectioHtml = this.sanitizer.bypassSecurityTrustHtml(sanitized)
-    console.log(this.safeLectioHtml)
 
     this.loadedAll = true
   }
