@@ -25,12 +25,14 @@ export class HomeComponent {
     day: string,
     gospel: string,
     firstReading: string,
-    secondReading: string
+    secondReading: string,
+    dayMass: string
   } = {
       day: '09/07/2025',
       gospel: 'Mt 10,1-7',
       firstReading: '1 Cor 2,1-5',
-      secondReading: '1 Cor 2,6-10'
+      secondReading: '1 Cor 2,6-10',
+      dayMass: 'Sexta-feira da 15ª semana do Tempo Comum'
     }
 
   async ngAfterViewInit(): Promise<void> {
@@ -42,11 +44,13 @@ export class HomeComponent {
 
   async getDayLiturgy(): Promise<void> {
     const result = await this.request.get('/liturgia/evangelho')
+    const dayMass = await this.request.get('/liturgia/calendario/hoje')
     this.dayLiturgy = {
       day: result.dados.data_liturgia,
       gospel: result.dados.evangelho,
       firstReading: result.dados.primeira_leitura,
-      secondReading: result.dados.segunda_leitura
+      secondReading: result.dados.segunda_leitura,
+      dayMass: dayMass.dados.descricao
     }
   }
 
