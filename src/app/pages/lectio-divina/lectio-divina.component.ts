@@ -78,7 +78,8 @@ export class LectioDivinaComponent implements OnInit {
 
     this.lectioMap = {}
     for (const i of items) {
-      const d = new Date(i.data)
+      const [year, month, day] = i.data.split('-').map(Number)
+      const d = new Date(year, month - 1, day)
       const key = this.keyOf(d)
       this.lectioMap[key] = i
     }
