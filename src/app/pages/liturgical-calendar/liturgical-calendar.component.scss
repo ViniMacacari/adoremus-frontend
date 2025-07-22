@@ -94,7 +94,9 @@
         min-height: 100%;
         display: none !important;
     }
+}
 
+@media (max-width: 468px) {
     .info-primary {
         display: inline-block;
         transform: rotate(-45deg);
