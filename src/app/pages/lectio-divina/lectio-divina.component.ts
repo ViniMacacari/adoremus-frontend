@@ -14,8 +14,8 @@ import { ButtonComponent } from "../../components/button/button.component"
   styleUrl: './lectio-divina.component.scss'
 })
 export class LectioDivinaComponent implements OnInit {
-  currentMonth: number = new Date().getMonth()
-  currentYear: number = new Date().getFullYear()
+  currentMonth: number = this.getBrasiliaDate().getMonth()
+  currentYear: number = this.getBrasiliaDate().getFullYear()
   weekDays: string[] = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
   calendarDays: { date: Date; hasLectio: boolean; active: boolean }[] = []
   lectioMap: Record<string, boolean> = {}
@@ -52,7 +52,7 @@ export class LectioDivinaComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.loadLectioDates()
 
-    const today = new Date()
+    const today = this.getBrasiliaDate()
     const key = this.keyOf(today)
 
     let lectio: any = this.lectioMap[key]
@@ -227,5 +227,11 @@ export class LectioDivinaComponent implements OnInit {
     })
 
     return doc.body.innerHTML
+  }
+
+  getBrasiliaDate(): Date {
+    const now = new Date()
+    const localString = now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' })
+    return new Date(localString)
   }
 }
