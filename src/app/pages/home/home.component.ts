@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from "../../components/loader/loader.component"
 import { ButtonComponent } from "../../components/button/button.component"
+import { CapitalizeFirstPipe } from '../../pips/capitalize-first.pipe'
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,10 @@ import { ButtonComponent } from "../../components/button/button.component"
 export class HomeComponent {
   constructor(
     private router: Router,
-    private request: RequestService
+    private request: RequestService,
   ) { }
+
+  private capitalize: CapitalizeFirstPipe = new CapitalizeFirstPipe()
 
   allLoaded: boolean = false
 
@@ -50,7 +53,7 @@ export class HomeComponent {
       gospel: result.dados.evangelho,
       firstReading: result.dados.primeira_leitura,
       secondReading: result.dados.segunda_leitura,
-      dayMass: dayMass.dados.descricao
+      dayMass: dayMass.dados.descricao && (dayMass.dados.tipo === 'festa' || dayMass.dados.tipo === 'memória') ? this.capitalize.transform(dayMass.dados.tipo) + ' de ' + dayMass.dados.descricao : dayMass.dados.descricao
     }
   }
 
