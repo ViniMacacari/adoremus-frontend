@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from "../../components/loader/loader.component"
 import { ModalLiturgicalInfoComponent } from '../../components/modal-liturgical-info/modal-liturgical-info.component'
+import { CapitalizeFirstPipe } from '../../pips/capitalize-first.pipe'
 
 @Component({
   selector: 'app-liturgical-calendar',
   standalone: true,
-  imports: [LoaderComponent, CommonModule, ModalLiturgicalInfoComponent],
+  imports: [LoaderComponent, CommonModule, ModalLiturgicalInfoComponent, CapitalizeFirstPipe],
   templateUrl: './liturgical-calendar.component.html',
   styleUrl: './liturgical-calendar.component.scss'
 })

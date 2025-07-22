@@ -37,8 +37,10 @@
                  }">
                     <div *ngIf="day" class="d-flex flex-column h-100">
                         <small class="secondary pointer">{{ day.data | date: 'd' }}</small><br>
-                        <p class="mb-0 h-100 description pointer">{{ day.preceito ? day.descricao : day.descricao }}</p><br>
-                        <p class="light info-primary pointer">{{ day.preceito ? 'Preceito' : day.tipo }}</p>
+                        <p class="mb-0 h-100 description pointer">{{ day.preceito ? day.descricao : day.descricao }}</p>
+                        <br>
+                        <p class="light info-primary pointer">{{ day.preceito ? 'Preceito' : day.tipo |
+                            capitalizeFirst}}</p>
                         <div class="liturgical-flag pointer" [ngClass]="getLiturgicalColor(day?.tempo)"></div>
                     </div>
                 </div>
