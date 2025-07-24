@@ -5,6 +5,7 @@ import { LiturgicalCalendarComponent } from './pages/liturgical-calendar/liturgi
 import { PrayersComponent } from './pages/prayers/prayers.component'
 import { LectioDivinaComponent } from './pages/lectio-divina/lectio-divina.component'
 import { NewLectioComponent } from './pages/new-lectio/new-lectio.component'
+import { MoreInfoComponent } from './pages/more-info/more-info.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
     { path: 'oracoes', component: PrayersComponent },
     { path: 'lectio-divina', component: LectioDivinaComponent },
     { path: 'nova-lectio', component: NewLectioComponent },
+    { path: 'mais', component: MoreInfoComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]
