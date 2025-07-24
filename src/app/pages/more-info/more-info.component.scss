@@ -1,0 +1,22 @@
+.card-more {
+    height: 200px;
+    width: 250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-image:
+        url('/img/rosary.png'),
+        radial-gradient(circle at center top, #300f0f 0%, #210808 80%);
+
+    background-color: #210808;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+}
