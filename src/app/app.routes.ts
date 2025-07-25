@@ -7,6 +7,7 @@ import { LectioDivinaComponent } from './pages/lectio-divina/lectio-divina.compo
 import { NewLectioComponent } from './pages/new-lectio/new-lectio.component'
 import { MoreInfoComponent } from './pages/more-info/more-info.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
+import { ExaminationConscienceComponent } from './pages/examination-conscience/examination-conscience.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'lectio-divina', component: LectioDivinaComponent },
     { path: 'nova-lectio', component: NewLectioComponent },
     { path: 'mais', component: MoreInfoComponent },
+    { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

@@ -1,0 +1,18 @@
+<div class="container py-4">
+    <div class="d-flex mb-5 justify-content-center align-items-center">
+        <h2 class="text-center">Exame de Consciência</h2>
+    </div>
+
+    <div *ngFor="let item of examination" class="card mb-4 shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">{{ item.title }} — {{ item.reference }}</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let question of item.questions" class="list-group-item">
+                    {{ question }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
