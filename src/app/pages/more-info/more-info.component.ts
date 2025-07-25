@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-more-info',
@@ -9,5 +10,11 @@ import { CommonModule } from '@angular/common'
   styleUrl: './more-info.component.scss'
 })
 export class MoreInfoComponent {
+  constructor(
+    private router: Router
+  ) { }
 
+  navigate(url: string): void {
+    this.router.navigate([url])
+  }
 }
