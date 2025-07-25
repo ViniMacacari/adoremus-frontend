@@ -1,6 +1,6 @@
 <app-loader *ngIf="!allLoaded" class="w-100 d-flex align-items-center justify-content-center my-3"></app-loader>
 
-<div class="d-flex flex-column">
+<div *ngIf="allLoaded" class="d-flex flex-column">
     <h2 class="w-100 text-center my-3">Calendário Litúrgico</h2>
 
     <div class="d-flex justify-content-center w-100 flex-wrap">
@@ -28,7 +28,7 @@
 
         <ng-container *ngFor="let week of calendarGrid">
             <ng-container *ngFor="let day of week">
-                <div class="calendar-cell pointer" (click)="modal.show(day)" [ngClass]="{
+                <div class="calendar-cell pointer" (click)="day ? modal.show(day): ''" [ngClass]="{
                    'bg-preceito': day?.preceito,
                    'bg-solene': day?.tipo === 'solenidade',
                    'bg-festa': day?.tipo === 'festa',
