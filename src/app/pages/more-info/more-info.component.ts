@@ -17,4 +17,8 @@ export class MoreInfoComponent {
   navigate(url: string): void {
     this.router.navigate([url])
   }
+
+  externalNavigate(url: string): void {
+    window.open(url, '_blank')
+  }
 }
