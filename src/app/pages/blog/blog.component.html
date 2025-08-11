@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="posts mt-4">
+    <div class="posts h-100 mt-4">
         <div *ngFor="let post of posts" class="post pointer p-3 mb-3">
             <h3 class="post-title">{{ post.titulo }}</h3>
             <h5 class="post-subtitle">{{ post.subtitulo }}</h5>
@@ -26,5 +26,23 @@
                 <span class="date">{{ post.data_postagem | date:'dd/MM/yyyy HH:mm' }}</span>
             </div>
         </div>
+    </div>
+
+    <div class="pagination my-3" *ngIf="totalPages > 1">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">«</button>
+
+        <button *ngIf="pagesToShow[0] > 1" (click)="changePage(1)">1</button>
+        <span *ngIf="pagesToShow[0] > 2">...</span>
+
+        <button *ngFor="let p of pagesToShow" [class.active]="p === currentPage" (click)="changePage(p)">
+            {{ p }}
+        </button>
+
+        <span *ngIf="pagesToShow[pagesToShow.length - 1] < totalPages - 1">...</span>
+        <button *ngIf="pagesToShow[pagesToShow.length - 1] < totalPages" (click)="changePage(totalPages)">
+            {{ totalPages }}
+        </button>
+
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">»</button>
     </div>
 </div>

@@ -15,6 +15,9 @@ export class BlogComponent {
   categories: any = []
   posts: any = []
   searchActive = false
+  currentPage: number = 1
+  totalPages: number = 1
+  pagesToShow: number[] = []
 
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>
 
@@ -33,10 +36,12 @@ export class BlogComponent {
     this.categories = result.dados
   }
 
-  async getLastPosts(): Promise<void> {
-    const result = await this.request.get('/blog/postagens')
+  async getLastPosts(page: number = 1): Promise<void> {
+    const result = await this.request.get(`/blog/postagens?page=${page}`)
     this.posts = result.dados
-    console.log(this.posts)
+    this.currentPage = result.pagina
+    this.totalPages = result.totalPaginas
+    this.updatePagesToShow()
   }
 
   activateSearch(): void {
@@ -48,5 +53,27 @@ export class BlogComponent {
 
   deactivateSearch(): void {
     this.searchActive = false
+  }
+
+  updatePagesToShow(): void {
+    const delta = 2
+    const range: number[] = []
+    for (let i = Math.max(1, this.currentPage - delta); i <= Math.min(this.totalPages, this.currentPage + delta); i++) {
+      range.push(i)
+    }
+    this.pagesToShow = range
+  }
+
+  async changePage(page: number): Promise<void> {
+    if (page >= 1 && page <= this.totalPages && page !== this.currentPage) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      
+      this.allLoaded = false
+      await this.getLastPosts(page)
+      this.allLoaded = true
+    }
   }
 }
