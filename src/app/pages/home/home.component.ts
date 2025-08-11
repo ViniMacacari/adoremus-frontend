@@ -46,7 +46,7 @@ export class HomeComponent {
   }
 
   async getDayLiturgy(): Promise<void> {
-    const result = await this.request.get('/liturgia/evangelho')
+    const result = await this.request.get('/liturgia/evangelho?locale=br')
     const dayMass = await this.request.get('/liturgia/calendario/hoje')
     this.dayLiturgy = {
       day: result.dados.data_liturgia,
