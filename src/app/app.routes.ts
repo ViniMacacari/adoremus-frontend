@@ -9,6 +9,7 @@ import { MoreInfoComponent } from './pages/more-info/more-info.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { ExaminationConscienceComponent } from './pages/examination-conscience/examination-conscience.component'
 import { MissalComponent } from './pages/missal/missal.component'
+import { BlogComponent } from './pages/blog/blog.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'mais', component: MoreInfoComponent },
     { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: 'missal', component: MissalComponent },
+    { path: 'blog', component: BlogComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]
