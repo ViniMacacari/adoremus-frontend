@@ -56,8 +56,6 @@ export class BlogComponent {
 
     const queryString = params.length ? `?${params.join('&')}` : ''
 
-    console.log(queryString)
-
     const result = await this.request.get(`/blog/postagens${queryString}`)
     this.posts = result.dados
     this.currentPage = result.pagina
