@@ -4,20 +4,23 @@
     <h2 class="w-100 text-center my-3">Blog - Página Inicial</h2>
 
     <div class="categories">
-        <div *ngFor="let category of categories" class="category mx-2 mb-3">
+        <div *ngFor="let category of categories" class="category mx-2 mb-3"
+            [class.active]="selectedCategoryId === category.id_categoria"
+            (click)="filterByCategory(category.id_categoria)">
             <a class="primary pointer">{{ category.nome_categoria }}</a>
         </div>
     </div>
 
     <div class="d-flex align-items-center justify-content-center w-100">
         <div class="search-blog" [class.active]="searchActive" (click)="activateSearch()">
-            <input #searchInput type="text" (blur)="deactivateSearch()">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <input #searchInput type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()"
+                (blur)="deactivateSearch()">
+            <i class="fa-solid fa-magnifying-glass" (click)="onSearch()"></i>
         </div>
     </div>
 
     <div class="posts h-100 mt-4">
-        <div *ngFor="let post of posts" class="post pointer p-3 mb-3" (click)="goToPost(post.slug)">
+        <div *ngFor="let post of posts" class="post pointer m-3 mb-3" (click)="goToPost(post.slug)">
             <h3 class="post-title light pointer">{{ post.titulo }}</h3>
             <h5 class="post-subtitle pointer">{{ post.subtitulo }}</h5>
             <p class="post-content pointer">{{ post.resumo }}</p>
