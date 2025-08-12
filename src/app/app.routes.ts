@@ -12,6 +12,7 @@ import { MissalComponent } from './pages/missal/missal.component'
 import { BlogComponent } from './pages/blog/blog.component'
 import { NewBlogPostComponent } from './pages/new-blog-post/new-blog-post.component'
 import { BlogPostComponent } from './pages/blog-post/blog-post.component'
+import { ApiComponent } from './pages/api/api.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'blog', component: BlogComponent },
     { path: 'blog/:slug', component: BlogPostComponent },
     { path: 'novo-post', component: NewBlogPostComponent },
+    { path: 'api', component: ApiComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]
