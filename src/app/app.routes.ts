@@ -10,6 +10,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { ExaminationConscienceComponent } from './pages/examination-conscience/examination-conscience.component'
 import { MissalComponent } from './pages/missal/missal.component'
 import { BlogComponent } from './pages/blog/blog.component'
+import { NewBlogPostComponent } from './pages/new-blog-post/new-blog-post.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
     { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: 'missal', component: MissalComponent },
     { path: 'blog', component: BlogComponent },
+    { path: 'novo-post', component: NewBlogPostComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

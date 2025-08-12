@@ -1,1 +1,38 @@
-<p>new-blog-post works!</p>
+<div class="container py-4">
+    <h2 class="mb-3 w-100 text-center">Post no blog</h2>
+
+    <div class="mb-3">
+        <label>Título</label>
+        <input type="text" [(ngModel)]="title">
+    </div>
+
+    <div class="mb-3">
+        <label>Sub-título</label>
+        <input type="text" [(ngModel)]="subtitle">
+    </div>
+
+    <div class="mb-3">
+        <label>Autor</label>
+        <input type="text" [(ngModel)]="author">
+    </div>
+
+    <div class="mb-3">
+        <label>Categoria</label>
+        <input type="text" [(ngModel)]="category">
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Conteúdo</label>
+        <quill-editor [(ngModel)]="content" [style]="{height: '1000px'}"></quill-editor>
+    </div>
+
+    <app-button [text]="'Enviar'" (click)="submit()"></app-button>
+
+    <div *ngIf="success" class="alert alert-success mt-3">
+        Post submitted successfully.
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        Error: {{ errorMessage }}
+    </div>
+</div>
