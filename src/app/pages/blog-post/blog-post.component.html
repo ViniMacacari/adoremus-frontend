@@ -1,0 +1,15 @@
+<div class="container my-3">
+    <app-loader *ngIf="!loadedAll" class="w-100 d-flex justify-content-center my-3"></app-loader>
+
+    <div *ngIf="loadedAll && post">
+        <h1 class="text-center mb-2">{{ post.titulo }}</h1>
+        <div class="d-flex align-items-center justify-content-center w-100">
+            <h5 class="text-center subtitle mb-4">{{ post.subtitulo }}</h5>
+        </div>
+        <p class="text-center mb-1">
+            <small>Por {{ post.autor }} — {{ post.data_postagem | date:'dd/MM/yyyy' }}</small>
+        </p>
+
+        <div class="mt-4 ql-editor content-blog" [innerHTML]="safePostHtml"></div>
+    </div>
+</div>
