@@ -8,6 +8,11 @@
     src: url('/fonts/caudex-bold.ttf');
 }
 
+@font-face {
+    font-family: 'Cloister';
+    src: url('/fonts/cloister.ttf');
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -75,7 +80,7 @@ blockquote {
 }
 
 i {
-    color: #ada886
+    color: #ada886 !important;
 }
 
 .bold {
@@ -90,6 +95,10 @@ i {
 
 .light {
     color: #cfc9a1;
+}
+
+.traditional {
+    font-family: "Cloister", sans-serif;
 }
 
 .btn-page {
