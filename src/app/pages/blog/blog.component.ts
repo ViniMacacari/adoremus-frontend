@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { Router } from '@angular/router'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from "../../components/loader/loader.component"
 
@@ -21,7 +22,10 @@ export class BlogComponent {
 
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>
 
-  constructor(private request: RequestService) { }
+  constructor(
+    private router: Router,
+    private request: RequestService
+  ) { }
 
   async ngAfterViewInit(): Promise<void> {
     setTimeout(async () => {
@@ -70,10 +74,14 @@ export class BlogComponent {
         top: 0,
         behavior: 'smooth'
       })
-      
+
       this.allLoaded = false
       await this.getLastPosts(page)
       this.allLoaded = true
     }
+  }
+
+  async goToPost(slug: string): Promise<void> {
+    this.router.navigate(['/blog/', slug])
   }
 }

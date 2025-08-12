@@ -17,7 +17,7 @@
     </div>
 
     <div class="posts h-100 mt-4">
-        <div *ngFor="let post of posts" class="post pointer p-3 mb-3">
+        <div *ngFor="let post of posts" class="post pointer p-3 mb-3" (click)="goToPost(post.slug)">
             <h3 class="post-title light pointer">{{ post.titulo }}</h3>
             <h5 class="post-subtitle pointer">{{ post.subtitulo }}</h5>
             <p class="post-content pointer">{{ post.resumo }}</p>
