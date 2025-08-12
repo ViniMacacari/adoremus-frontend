@@ -18,12 +18,12 @@
 
     <div class="posts h-100 mt-4">
         <div *ngFor="let post of posts" class="post pointer p-3 mb-3">
-            <h3 class="post-title">{{ post.titulo }}</h3>
-            <h5 class="post-subtitle">{{ post.subtitulo }}</h5>
-            <p class="post-content">{{ post.conteudo }}</p>
-            <div class="post-meta mt-2">
-                <span class="author">Por {{ post.autor }}</span>
-                <span class="date">{{ post.data_postagem | date:'dd/MM/yyyy HH:mm' }}</span>
+            <h3 class="post-title light pointer">{{ post.titulo }}</h3>
+            <h5 class="post-subtitle pointer">{{ post.subtitulo }}</h5>
+            <p class="post-content pointer">{{ post.resumo }}</p>
+            <div class="post-meta mt-2 pointer">
+                <span class="author pointer">Por {{ post.autor }}</span>
+                <span class="date pointer">{{ post.data_postagem | date:'dd/MM/yyyy HH:mm' }}</span>
             </div>
         </div>
     </div>
