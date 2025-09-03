@@ -15,6 +15,9 @@ import { ModalComponent } from "../../components/modal/modal.component"
   styleUrl: './lectio-divina.component.scss'
 })
 export class LectioDivinaComponent implements OnInit {
+
+  private informationGospel: { passage: string; text: string } | null = null
+
   currentMonth: number = this.getBrasiliaDate().getMonth()
   currentYear: number = this.getBrasiliaDate().getFullYear()
   weekDays: string[] = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
@@ -169,8 +172,10 @@ export class LectioDivinaComponent implements OnInit {
 
     const result = await this.request.get(`/lectio-divina/${id}`)
     this.lectioToday = result.dados.lectio
-
-    this.modal.show('Passagem Bíblica', result.dados.lectio.passagem, result.dados.lectio.texto)
+    this.informationGospel = {
+      passage: result.dados.lectio.passagem,
+      text: result.dados.lectio.texto
+    }
 
     let cleanHtml = this.lectioToday.conteudo
     cleanHtml = cleanHtml.replace(/&nbsp;/g, ' ')
@@ -179,6 +184,10 @@ export class LectioDivinaComponent implements OnInit {
     this.safeLectioHtml = this.sanitizer.bypassSecurityTrustHtml(sanitized)
 
     this.loadedAll = true
+  }
+
+  openGospelModal(): void {
+    this.modal.show('Passagem Bíblica', this.informationGospel?.passage || '', this.informationGospel?.text || '')
   }
 
   sanitizeHtml(rawHtml: string): string {
