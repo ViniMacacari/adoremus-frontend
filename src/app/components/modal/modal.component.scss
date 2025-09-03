@@ -34,7 +34,8 @@
     }
 
     &-content {
-        border-radius: 10px;
+        border-radius: 25px;
+        background-color: #2d1f1f;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
@@ -45,10 +46,12 @@
         .spinner-border {
             width: 3rem;
             height: 3rem;
-            color: #6b447a;
+            color: #ada886;
         }
 
         p {
+            max-height: 400px;
+            overflow-y: auto;
             margin-top: 15px;
         }
     }
@@ -56,7 +59,7 @@
 
 hr {
     margin: 10px 0;
-    border: 1px solid #6b447a;
+    border: 1px solid #ada886;
 }
 
 p {

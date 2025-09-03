@@ -5,11 +5,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
 import { ButtonComponent } from "../../components/button/button.component"
+import { ModalComponent } from "../../components/modal/modal.component"
 
 @Component({
   selector: 'app-lectio-divina',
   standalone: true,
-  imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent],
+  imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent, ModalComponent],
   templateUrl: './lectio-divina.component.html',
   styleUrl: './lectio-divina.component.scss'
 })
@@ -26,6 +27,7 @@ export class LectioDivinaComponent implements OnInit {
   safeLectioHtml: SafeHtml | null = null
 
   @ViewChild('calendarContainer') calendarContainer!: ElementRef
+  @ViewChild(ModalComponent) modal!: ModalComponent
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {
@@ -167,6 +169,8 @@ export class LectioDivinaComponent implements OnInit {
 
     const result = await this.request.get(`/lectio-divina/${id}`)
     this.lectioToday = result.dados.lectio
+
+    this.modal.show('Passagem Bíblica', result.dados.lectio.passagem, result.dados.lectio.texto)
 
     let cleanHtml = this.lectioToday.conteudo
     cleanHtml = cleanHtml.replace(/&nbsp;/g, ' ')
