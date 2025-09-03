@@ -5,15 +5,19 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from '../../components/loader/loader.component'
 import { ButtonComponent } from "../../components/button/button.component"
+import { ModalComponent } from "../../components/modal/modal.component"
 
 @Component({
   selector: 'app-lectio-divina',
   standalone: true,
-  imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent],
+  imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent, ModalComponent],
   templateUrl: './lectio-divina.component.html',
   styleUrl: './lectio-divina.component.scss'
 })
 export class LectioDivinaComponent implements OnInit {
+
+  private informationGospel: { passage: string; text: string } | null = null
+
   currentMonth: number = this.getBrasiliaDate().getMonth()
   currentYear: number = this.getBrasiliaDate().getFullYear()
   weekDays: string[] = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
@@ -26,6 +30,7 @@ export class LectioDivinaComponent implements OnInit {
   safeLectioHtml: SafeHtml | null = null
 
   @ViewChild('calendarContainer') calendarContainer!: ElementRef
+  @ViewChild(ModalComponent) modal!: ModalComponent
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent): void {
@@ -167,6 +172,10 @@ export class LectioDivinaComponent implements OnInit {
 
     const result = await this.request.get(`/lectio-divina/${id}`)
     this.lectioToday = result.dados.lectio
+    this.informationGospel = {
+      passage: result.dados.lectio.passagem,
+      text: result.dados.lectio.texto
+    }
 
     let cleanHtml = this.lectioToday.conteudo
     cleanHtml = cleanHtml.replace(/&nbsp;/g, ' ')
@@ -175,6 +184,10 @@ export class LectioDivinaComponent implements OnInit {
     this.safeLectioHtml = this.sanitizer.bypassSecurityTrustHtml(sanitized)
 
     this.loadedAll = true
+  }
+
+  openGospelModal(): void {
+    this.modal.show('Passagem Bíblica', this.informationGospel?.passage || '', this.informationGospel?.text || '')
   }
 
   sanitizeHtml(rawHtml: string): string {

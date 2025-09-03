@@ -27,3 +27,16 @@
     white-space: pre-line !important;
     hyphens: auto !important;
 }
+
+.ql-editor ol {
+    list-style-type: decimal !important;
+    padding-left: 2rem !important;
+}
+
+.ql-editor ol li {
+    list-style-type: decimal !important;
+}
+
+.ql-editor li[data-list="ordered"] {
+    list-style-type: decimal !important;
+}

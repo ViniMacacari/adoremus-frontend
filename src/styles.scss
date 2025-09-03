@@ -83,6 +83,22 @@ i {
     color: #ada886 !important;
 }
 
+ol {
+    list-style-type: decimal !important;
+    list-style-position: outside !important;
+    margin-left: 2rem;
+    padding-left: 2rem;
+}
+
+ol li {
+    display: list-item !important;
+}
+
+ol li::marker {
+    content: counter(list-item) ". ";
+    color: inherit;
+}
+
 .bold {
     font-family: "Caudex Bold", sans-serif;
     font-weight: normal;
