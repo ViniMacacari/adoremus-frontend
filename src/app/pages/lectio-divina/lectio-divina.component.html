@@ -2,9 +2,9 @@
     <div class="d-flex flex-column align-items-center justify-content-center">
         <h1 class="w-100 text-center mt-3 mb-1">Lectio Divina</h1>
         <p class="text-center mb-0" style="max-width: 600px;">
-            A Lectio Divina é uma forma de ler, meditar, contemplar e orar, com o auxílio da liturgia diária e de acordo
-            com a
-            verdadeira interpretação da Palavra de Cristo, basendo-se na doutrina da Santa Igreja Católica.
+            A Lectio Divina é um modo de ler, meditar, contemplar e orar com a liturgia diária. A reflexão abaixo busca
+            auxiliar
+            o entendimento da palavra de Deus e não substitui a oração e contemplação pessoal do fiel.
         </p>
     </div>
 </div>
@@ -13,8 +13,13 @@
 
 <div *ngIf="loadedAll" class="d-flex flex-column justify-content-center container my-3">
     <div #calendarContainer class="d-flex justify-content-center calendar-wrapper" style="position: relative;">
-        <app-button (click)="toggleCalendar()"
-            [text]="selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data'"></app-button>
+        <div class="d-flex align-items-center justify-content-center gap-3">
+            <app-button (click)="toggleCalendar()"
+                [text]="selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data'"></app-button>
+
+            <app-button (click)="openGospelModal()"
+                [text]="'Ler passagem'"></app-button>
+        </div>
 
         <div *ngIf="calendarVisible" class="calendar-popup p-3 rounded shadow">
             <div class="calendar-header d-flex justify-content-between align-items-center mb-3">
@@ -37,3 +42,5 @@
 
     <div *ngIf="safeLectioHtml" class="mt-4 ql-editor content-lectio" [innerHTML]="safeLectioHtml"></div>
 </div>
+
+<app-modal></app-modal>

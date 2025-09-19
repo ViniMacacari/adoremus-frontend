@@ -1,0 +1,51 @@
+<app-loader *ngIf="!allLoaded" class="w-100 d-flex justify-content-center mt-3"></app-loader>
+
+<div *ngIf="allLoaded" class="selected-prayer container mt-3">
+    <h2 class="w-100 text-center my-3">Blog - Página Inicial</h2>
+
+    <div class="categories">
+        <div *ngFor="let category of categories" class="category mx-2 mb-3"
+            [class.active]="selectedCategoryId === category.id_categoria"
+            (click)="filterByCategory(category.id_categoria)">
+            <a class="primary pointer">{{ category.nome_categoria }}</a>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="search-blog" [class.active]="searchActive" (click)="activateSearch()">
+            <input #searchInput type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()"
+                (blur)="deactivateSearch()">
+            <i class="fa-solid fa-magnifying-glass" (click)="onSearch()"></i>
+        </div>
+    </div>
+
+    <div class="posts h-100 mt-4">
+        <div *ngFor="let post of posts" class="post pointer m-3 mb-3" (click)="goToPost(post.slug)">
+            <h3 class="post-title light pointer">{{ post.titulo }}</h3>
+            <h5 class="post-subtitle pointer">{{ post.subtitulo }}</h5>
+            <p class="post-content pointer">{{ post.resumo }}</p>
+            <div class="post-meta mt-2 pointer">
+                <span class="author pointer">Por {{ post.autor }}</span>
+                <span class="date pointer">{{ post.data_postagem | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pagination my-3" *ngIf="totalPages > 1">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">«</button>
+
+        <button *ngIf="pagesToShow[0] > 1" (click)="changePage(1)">1</button>
+        <span *ngIf="pagesToShow[0] > 2">...</span>
+
+        <button *ngFor="let p of pagesToShow" [class.active]="p === currentPage" (click)="changePage(p)">
+            {{ p }}
+        </button>
+
+        <span *ngIf="pagesToShow[pagesToShow.length - 1] < totalPages - 1">...</span>
+        <button *ngIf="pagesToShow[pagesToShow.length - 1] < totalPages" (click)="changePage(totalPages)">
+            {{ totalPages }}
+        </button>
+
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">»</button>
+    </div>
+</div>

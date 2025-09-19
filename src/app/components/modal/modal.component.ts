@@ -2,31 +2,38 @@ import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
+import { ButtonComponent } from "../button/button.component"
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ButtonComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
-  static instance: ModalComponent
+  instance: ModalComponent
 
   isLoading = false
+  title: string = ''
+  subtitle: string = ''
+  info: string = ''
 
   constructor(
     private router: Router
   ) {
-    ModalComponent.instance = this
+    this.instance = this
   }
 
-  static show() {
-    ModalComponent.instance.isLoading = true
+  show(title: string, subtitle: string, info: string) {
+    this.title = title
+    this.subtitle = subtitle
+    this.info = info
+    this.instance.isLoading = true
   }
 
-  static hide() {
-    ModalComponent.instance.isLoading = false
+  hide() {
+    this.instance.isLoading = false
   }
 
   redirecionar(rota: string): void {

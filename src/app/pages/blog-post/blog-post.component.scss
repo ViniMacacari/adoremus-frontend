@@ -1,0 +1,42 @@
+:host ::ng-deep .ql-editor img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.subtitle {
+    width: 80%;
+}
+
+.ql-editor p:empty::after {
+    content: '\00a0';
+    display: block;
+}
+
+.ql-editor p img {
+    display: block !important;
+    margin: 20px auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.content-blog {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-line !important;
+    hyphens: auto !important;
+}
+
+.ql-editor ol {
+    list-style-type: decimal !important;
+    padding-left: 2rem !important;
+}
+
+.ql-editor ol li {
+    list-style-type: decimal !important;
+}
+
+.ql-editor li[data-list="ordered"] {
+    list-style-type: decimal !important;
+}

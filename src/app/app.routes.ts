@@ -9,6 +9,11 @@ import { MoreInfoComponent } from './pages/more-info/more-info.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { ExaminationConscienceComponent } from './pages/examination-conscience/examination-conscience.component'
 import { MissalComponent } from './pages/missal/missal.component'
+import { BlogComponent } from './pages/blog/blog.component'
+import { NewBlogPostComponent } from './pages/new-blog-post/new-blog-post.component'
+import { BlogPostComponent } from './pages/blog-post/blog-post.component'
+import { ApiComponent } from './pages/api/api.component'
+import { AboutComponent } from './pages/about/about.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,6 +24,11 @@ export const routes: Routes = [
     { path: 'mais', component: MoreInfoComponent },
     { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: 'missal', component: MissalComponent },
+    { path: 'blog', component: BlogComponent },
+    { path: 'blog/:slug', component: BlogPostComponent },
+    { path: 'novo-post', component: NewBlogPostComponent },
+    { path: 'api', component: ApiComponent },
+    { path: 'sobre', component: AboutComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]
