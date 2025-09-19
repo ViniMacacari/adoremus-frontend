@@ -2,7 +2,10 @@
     padding: 5px 20px !important;
     padding-left: 60px !important;
     padding-right: 60px !important;
-    background-color: #2d1f1f;
+    background: radial-gradient(ellipse at top,
+            #2d1f1f 0%,
+            #1a1111 100%);
+            
     z-index: 999;
 
     @media (max-width: 600px) {
