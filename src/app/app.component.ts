@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router'
+import { filter } from 'rxjs/operators'
 import { MenuComponent } from "./components/menu/menu.component"
 import { FooterComponent } from "./components/footer/footer.component"
 import { ModalLoadingComponent } from "./components/modal-loading/modal-loading.component"
@@ -14,4 +15,17 @@ import { ModalComponent } from "./components/modal/modal.component"
 })
 export class AppComponent {
   title = 'adoremus'
+  showBackground: boolean = true
+
+  private blockedRoutes = [
+    '/',
+  ]
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.showBackground = !this.blockedRoutes.includes(event.urlAfterRedirects)
+      })
+  }
 }
