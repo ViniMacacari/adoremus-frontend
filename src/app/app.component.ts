@@ -18,7 +18,7 @@ export class AppComponent {
   showBackground: boolean = true
 
   private blockedRoutes = [
-    '/',
+    '/sobre',
   ]
 
   constructor(private router: Router) {
