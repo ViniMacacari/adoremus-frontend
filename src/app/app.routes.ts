@@ -14,6 +14,7 @@ import { NewBlogPostComponent } from './pages/new-blog-post/new-blog-post.compon
 import { BlogPostComponent } from './pages/blog-post/blog-post.component'
 import { ApiComponent } from './pages/api/api.component'
 import { AboutComponent } from './pages/about/about.component'
+import { DocsComponent } from './pages/docs/docs.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: 'missal', component: MissalComponent },
     { path: 'blog', component: BlogComponent },
+    { path: 'documentos-magisteriais', component: DocsComponent },
     { path: 'blog/:slug', component: BlogPostComponent },
     { path: 'novo-post', component: NewBlogPostComponent },
     { path: 'api', component: ApiComponent },
