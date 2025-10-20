@@ -14,6 +14,7 @@ import { NewBlogPostComponent } from './pages/new-blog-post/new-blog-post.compon
 import { BlogPostComponent } from './pages/blog-post/blog-post.component'
 import { ApiComponent } from './pages/api/api.component'
 import { AboutComponent } from './pages/about/about.component'
+import { SaintComponent } from './pages/saint/saint.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
     { path: 'novo-post', component: NewBlogPostComponent },
     { path: 'api', component: ApiComponent },
     { path: 'sobre', component: AboutComponent },
+    { path: 'santo/:id', component: SaintComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

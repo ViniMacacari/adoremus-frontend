@@ -1,0 +1,16 @@
+<app-loader *ngIf="!loadedAll" class="w-100 d-flex justify-content-center my-3"></app-loader>
+
+<div *ngIf="loadedAll" class="d-flex flex-column justify-content-center container my-3">
+    <div class="d-flex align-items-center justify-content-center saint-background">
+        <div class="saint-img">
+            <img src="{{urlPublic + '/santos/' + saint.id + '.png'}}" width="200px">
+        </div>
+    </div>
+
+    <h2 class="text-center">{{ saint.name }}</h2>
+    <h5 class="text-center">Nascimento: {{ saint.birth | date:'dd/MM/y' }}</h5>
+    <h5 class="text-center mb-3">Nacionalidade: {{ saint.country }}</h5>
+
+    <p>{{ saint.about }}</p>
+    <p>{{ saint.history }}</p>
+</div>

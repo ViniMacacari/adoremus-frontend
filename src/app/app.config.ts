@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core'
+import { ApplicationConfig, importProvidersFrom, LOCALE_ID } from '@angular/core'
 import { provideRouter, RouterModule, withInMemoryScrolling } from '@angular/router'
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideHttpClient } from '@angular/common/http'
@@ -20,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(),
     { provide: ɵLOTTIE_OPTIONS, useValue: { player: () => player } },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     RestaurarPosicaoService,
     importProvidersFrom(BsDatepickerModule.forRoot())
   ]
