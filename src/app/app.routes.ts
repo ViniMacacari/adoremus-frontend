@@ -17,6 +17,7 @@ import { AboutComponent } from './pages/about/about.component'
 import { DocsComponent } from './pages/docs/docs.component'
 import { NewBreviaryComponent } from './pages/new-breviary/new-breviary.component'
 import { BreviaryComponent } from './pages/breviary/breviary.component'
+import { SaintComponent } from './pages/saint/saint.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -35,6 +36,7 @@ export const routes: Routes = [
     { path: 'novo-oficio', component: NewBreviaryComponent },
     { path: 'api', component: ApiComponent },
     { path: 'sobre', component: AboutComponent },
+    { path: 'santo/:id', component: SaintComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
 ]

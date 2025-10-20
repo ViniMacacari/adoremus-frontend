@@ -7,9 +7,8 @@ import { catchError } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class RequestService {
-
-  private url = 'https://api.adoremus.com.br'
-  // private url = 'http://localhost:2024'
+  // private url = 'https://api.adoremus.com.br'
+  private url = 'http://localhost:2024'
 
   constructor(private http: HttpClient) { }
 
@@ -88,6 +87,10 @@ export class RequestService {
         catchError(this.handleError)
       )
     )
+  }
+
+  getPublic(): string {
+    return this.url + '/img'
   }
 
   private createHeaders(): HttpHeaders {
