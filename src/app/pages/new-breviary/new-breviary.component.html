@@ -1,0 +1,69 @@
+<div class="container py-4">
+    <h2 class="mb-3 w-100 text-center">Novo Breviário</h2>
+
+    <div class="mb-3">
+        <label>Língua</label>
+        <input type="text" [(ngModel)]="language" placeholder="pt_BR">
+    </div>
+
+    <div class="mb-3">
+        <label>Cíclo Litúrgico</label>
+        <input type="number" [(ngModel)]="liturgicalCycle">
+    </div>
+
+    <div class="mb-3 d-flex gap-3">
+        <div class="w-50">
+            <label>Dia</label>
+            <input type="number" [(ngModel)]="day">
+        </div>
+        <div class="w-50">
+            <label>Mês</label>
+            <input type="number" [(ngModel)]="month">
+        </div>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Ofício de Leituras</label>
+        <quill-editor class="mb-4" [(ngModel)]="oficioLeitura" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Laudes</label>
+        <quill-editor class="mb-4" [(ngModel)]="laudes" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Tércia</label>
+        <quill-editor class="mb-4" [(ngModel)]="tercia" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Sexta</label>
+        <quill-editor class="mb-4" [(ngModel)]="sexta" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Noa</label>
+        <quill-editor class="mb-4" [(ngModel)]="noa" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Vésperas</label>
+        <quill-editor class="mb-4" [(ngModel)]="vesperas" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <div class="mb-5 d-flex flex-column h-100">
+        <label>Completas</label>
+        <quill-editor class="mb-4" [(ngModel)]="completas" [style]="{height: '400px'}"></quill-editor>
+    </div>
+
+    <app-button [text]="'Submit'" (click)="submit()"></app-button>
+
+    <div *ngIf="success" class="alert alert-success mt-3">
+        Breviary inserted successfully.
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        Error: {{ errorMessage }}
+    </div>
+</div>
