@@ -16,6 +16,7 @@ import { ApiComponent } from './pages/api/api.component'
 import { AboutComponent } from './pages/about/about.component'
 import { DocsComponent } from './pages/docs/docs.component'
 import { NewBreviaryComponent } from './pages/new-breviary/new-breviary.component'
+import { BreviaryComponent } from './pages/breviary/breviary.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -26,6 +27,7 @@ export const routes: Routes = [
     { path: 'mais', component: MoreInfoComponent },
     { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: 'missal', component: MissalComponent },
+    { path: 'liturgia-das-horas', component: BreviaryComponent },
     { path: 'blog', component: BlogComponent },
     { path: 'documentos-magisteriais', component: DocsComponent },
     { path: 'blog/:slug', component: BlogPostComponent },
