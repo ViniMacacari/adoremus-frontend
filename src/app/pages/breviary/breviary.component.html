@@ -4,6 +4,10 @@
         <p class="text-center mb-0" style="max-width: 600px;">
             Reze a Liturgia das Horas do dia {{ day }}, junto com toda a Santa Igreja!
         </p>
+
+        <app-button class="mt-3" (click)="toggleLanguage()"
+            [text]="language === 'pt_BR' ? 'Alterar para Latim' : 'Alterar para Português'">
+        </app-button>
     </div>
 </div>
 

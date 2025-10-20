@@ -18,6 +18,7 @@ export class BreviaryComponent {
   currentPart: string = 'laudes'
   day: string = ''
   selectedTab: string = ''
+  language: string = 'pt_BR'
 
   constructor(
     private request: RequestService,
@@ -29,18 +30,20 @@ export class BreviaryComponent {
   }
 
   async loadLiturgy(): Promise<void> {
+    this.selectedTab = 'Laudes'
     this.loaded = false
-    const hoje = this.getBrasiliaDate()
-    const year = hoje.getFullYear()
-    const month = hoje.getMonth() + 1
-    const day = hoje.getDate()
+    const today = this.getBrasiliaDate()
+    const year = today.getFullYear()
+    const month = today.getMonth() + 1
+    const day = today.getDate()
 
     this.day = `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`
 
-    const resp = await this.request.get(`/liturgia/das-horas/${year}/${month}/${day}`)
+    const resp = await this.request.get(`/liturgia/das-horas/${year}/${month}/${day}?lang=${this.language}`)
     const data = resp?.dados?.[0]
     if (!data) {
       this.loaded = true
+      this.liturgy = null
       return
     }
 
@@ -61,6 +64,11 @@ export class BreviaryComponent {
     this.selectedTab = tab
     this.currentPart = part
     this.updateDisplayedPart()
+  }
+
+  toggleLanguage(): void {
+    this.language = this.language === 'pt_BR' ? 'lt' : 'pt_BR'
+    this.loadLiturgy()
   }
 
   sanitizeHtml(rawHtml: string): string {
