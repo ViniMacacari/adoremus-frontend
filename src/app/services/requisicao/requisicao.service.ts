@@ -8,8 +8,8 @@ import { catchError } from 'rxjs/operators'
 })
 export class RequestService {
 
-  // private url = 'https://api.adoremus.com.br'
-  private url = 'http://localhost:2024'
+  private url = 'https://api.adoremus.com.br'
+  // private url = 'http://localhost:2024'
 
   constructor(private http: HttpClient) { }
 
