@@ -36,7 +36,7 @@ export class NewBreviaryComponent {
     this.errorMessage = ''
 
     try {
-      await this.request.post('/liturgia/nova', {
+      await this.request.post('/liturgia-das-horas/nova', {
         oficio_leitura: this.oficioLeitura,
         laudes: this.laudes,
         tercia: this.tercia,
