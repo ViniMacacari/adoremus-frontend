@@ -15,6 +15,7 @@ import { BlogPostComponent } from './pages/blog-post/blog-post.component'
 import { ApiComponent } from './pages/api/api.component'
 import { AboutComponent } from './pages/about/about.component'
 import { DocsComponent } from './pages/docs/docs.component'
+import { NewBreviaryComponent } from './pages/new-breviary/new-breviary.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
     { path: 'documentos-magisteriais', component: DocsComponent },
     { path: 'blog/:slug', component: BlogPostComponent },
     { path: 'novo-post', component: NewBlogPostComponent },
+    { path: 'novo-oficio', component: NewBreviaryComponent },
     { path: 'api', component: ApiComponent },
     { path: 'sobre', component: AboutComponent },
     { path: '404', component: NotFoundComponent },
