@@ -1,7 +1,7 @@
 <div class="d-flex flex-column">
     <h2 class="w-100 text-center my-3">Mais opções</h2>
 
-    <div class="d-flex flex-wrap w-100">
+    <div class="d-flex justify-content-center flex-wrap w-100">
         <div class="card-more m-2 rosary pointer" (click)="externalNavigate('https://terco.adoremus.com.br')">
             <h2 class="text-center pointer">Rezar o terço</h2>
         </div>
@@ -12,6 +12,14 @@
 
         <div class="card-more m-2 missal pointer" (click)="navigate('/missal')">
             <h2 class="text-center pointer">Missal Rito Ordinário</h2>
+        </div>
+
+        <!-- <div class="card-more m-2 letter pointer" (click)="navigate('/documentos-magisteriais')">
+            <h2 class="text-center pointer">Docs. Magisteriais</h2>
+        </div> -->
+
+        <div class="card-more m-2 hours pointer" (click)="navigate('/liturgia-das-horas')">
+            <h2 class="text-center pointer">Liturgia das Horas</h2>
         </div>
     </div>
 </div>

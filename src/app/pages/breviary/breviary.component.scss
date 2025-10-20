@@ -1,0 +1,11 @@
+.ql-editor p:empty::after {
+    content: '\00a0';
+    display: block;
+}
+
+.content-liturgy {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-line !important;
+    hyphens: auto !important;
+}

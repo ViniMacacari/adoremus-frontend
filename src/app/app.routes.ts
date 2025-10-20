@@ -14,6 +14,9 @@ import { NewBlogPostComponent } from './pages/new-blog-post/new-blog-post.compon
 import { BlogPostComponent } from './pages/blog-post/blog-post.component'
 import { ApiComponent } from './pages/api/api.component'
 import { AboutComponent } from './pages/about/about.component'
+import { DocsComponent } from './pages/docs/docs.component'
+import { NewBreviaryComponent } from './pages/new-breviary/new-breviary.component'
+import { BreviaryComponent } from './pages/breviary/breviary.component'
 import { SaintComponent } from './pages/saint/saint.component'
 
 export const routes: Routes = [
@@ -25,9 +28,12 @@ export const routes: Routes = [
     { path: 'mais', component: MoreInfoComponent },
     { path: 'exame-de-consciencia', component: ExaminationConscienceComponent },
     { path: 'missal', component: MissalComponent },
+    { path: 'liturgia-das-horas', component: BreviaryComponent },
     { path: 'blog', component: BlogComponent },
+    { path: 'documentos-magisteriais', component: DocsComponent },
     { path: 'blog/:slug', component: BlogPostComponent },
     { path: 'novo-post', component: NewBlogPostComponent },
+    { path: 'novo-oficio', component: NewBreviaryComponent },
     { path: 'api', component: ApiComponent },
     { path: 'sobre', component: AboutComponent },
     { path: 'santo/:id', component: SaintComponent },
