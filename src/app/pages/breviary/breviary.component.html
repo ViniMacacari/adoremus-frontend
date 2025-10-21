@@ -16,7 +16,7 @@
                 [text]="selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data'"></app-button>
 
             <app-button [width]="'100%'" class="btn-hours" (click)="toggleLanguage()"
-                [text]="language === 'pt_BR' ? 'Latim' : 'Português'"></app-button>
+                [text]="language === 'pt_BR' ? 'Portugês' : 'Latim'"></app-button>
         </div>
 
         <div *ngIf="calendarVisible" class="calendar-popup p-3 rounded shadow">
