@@ -64,7 +64,7 @@ export class BreviaryComponent {
     const days: { date: Date }[] = []
 
     for (let i = 0; i < startWeekDay; i++) {
-      days.push({ date: new Date(this.currentYear, this.currentMonth, i - startWeekDay + 1) })
+      days.push({ date: new Date(this.currentYear, this.currentMonth, -startWeekDay + i + 1) })
     }
 
     for (let i = 1; i <= totalDays; i++) {
@@ -73,7 +73,7 @@ export class BreviaryComponent {
 
     this.calendarDays = days
   }
-
+  
   prevMonth(): void {
     if (this.currentMonth === 0) {
       this.currentMonth = 11
@@ -93,9 +93,9 @@ export class BreviaryComponent {
   async selectDate(day: { date: Date }): Promise<void> {
     this.liturgy = null
     this.safeLiturgyHtml = null
-  
+
     this.selectedDate = day.date
-    this.calendarVisible = false  
+    this.calendarVisible = false
     this.selectedDate = day.date
     this.calendarVisible = false
     await this.loadLiturgy()
