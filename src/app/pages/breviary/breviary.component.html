@@ -29,22 +29,29 @@
             <div class="calendar-grid">
                 <div class="day-name" *ngFor="let d of weekDays">{{ d }}</div>
                 <div class="day-cell" *ngFor="let day of calendarDays"
-                    [class.selected]="selectedDate && day.date && day.date.toDateString() === selectedDate.toDateString()"
-                    (click)="selectDate(day)">
-                    {{ day.date ? day.date.getDate() : '' }}
+                    [class.inactive]="day.date.getMonth() !== currentMonth"
+                    [class.selected]="selectedDate && day.date.toDateString() === selectedDate.toDateString()"
+                    (click)="day.date.getMonth() === currentMonth && selectDate(day)">
+                    {{ day.date.getMonth() === currentMonth ? day.date.getDate() : '' }}
                 </div>
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-center gap-2 flex-wrap mb-3 mt-3">
-        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('oficio_leitura', 'Ofício')" [text]="'Ofício'"></app-button>
-        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('laudes', 'Laudes')" [text]="'Laudes'"></app-button>
-        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('tercia', 'Tércia')" [text]="'Tércia'"></app-button>
-        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('sexta', 'Sexta')" [text]="'Sexta'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('oficio_leitura', 'Ofício')"
+            [text]="'Ofício'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('laudes', 'Laudes')"
+            [text]="'Laudes'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('tercia', 'Tércia')"
+            [text]="'Tércia'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('sexta', 'Sexta')"
+            [text]="'Sexta'"></app-button>
         <app-button [width]="'100%'" class="btn-hours" (click)="changePart('noa', 'Noa')" [text]="'Noa'"></app-button>
-        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('vesperas', 'Vésperas')" [text]="'Vésperas'"></app-button>
-        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('completas', 'Completas')" [text]="'Completas'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('vesperas', 'Vésperas')"
+            [text]="'Vésperas'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('completas', 'Completas')"
+            [text]="'Completas'"></app-button>
     </div>
 
     <h3 class="text-center mt-4">{{ selectedTab }}</h3>

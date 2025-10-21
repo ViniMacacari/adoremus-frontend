@@ -67,6 +67,17 @@
     color: black !important;
 }
 
+.day-cell {
+    cursor: pointer;
+
+    &.inactive {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+        background-color: transparent !important;
+    }
+}
+
 .calendar-wrapper {
     position: relative;
 
