@@ -11,12 +11,12 @@
 
 <div *ngIf="loaded" class="d-flex flex-column justify-content-center container my-3">
     <div #calendarContainer class="d-flex justify-content-center calendar-wrapper" style="position: relative;">
-        <div class="d-flex align-items-center justify-content-center gap-3">
-            <app-button (click)="toggleCalendar()"
+        <div class="d-flex align-items-center justify-content-center gap-2">
+            <app-button [width]="'100%'" class="btn-hours" (click)="toggleCalendar()"
                 [text]="selectedDate ? selectedDate.toLocaleDateString('pt-BR') : 'Selecionar data'"></app-button>
 
-            <app-button (click)="toggleLanguage()"
-                [text]="language === 'pt_BR' ? 'Alterar para Latim' : 'Alterar para Português'"></app-button>
+            <app-button [width]="'100%'" class="btn-hours" (click)="toggleLanguage()"
+                [text]="language === 'pt_BR' ? 'Latim' : 'Português'"></app-button>
         </div>
 
         <div *ngIf="calendarVisible" class="calendar-popup p-3 rounded shadow">
@@ -38,13 +38,13 @@
     </div>
 
     <div class="d-flex justify-content-center gap-2 flex-wrap mb-3 mt-3">
-        <app-button (click)="changePart('oficio_leitura', 'Ofício')" [text]="'Ofício'"></app-button>
-        <app-button (click)="changePart('laudes', 'Laudes')" [text]="'Laudes'"></app-button>
-        <app-button (click)="changePart('tercia', 'Tércia')" [text]="'Tércia'"></app-button>
-        <app-button (click)="changePart('sexta', 'Sexta')" [text]="'Sexta'"></app-button>
-        <app-button (click)="changePart('noa', 'Noa')" [text]="'Noa'"></app-button>
-        <app-button (click)="changePart('vesperas', 'Vésperas')" [text]="'Vésperas'"></app-button>
-        <app-button (click)="changePart('completas', 'Completas')" [text]="'Completas'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('oficio_leitura', 'Ofício')" [text]="'Ofício'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('laudes', 'Laudes')" [text]="'Laudes'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('tercia', 'Tércia')" [text]="'Tércia'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('sexta', 'Sexta')" [text]="'Sexta'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('noa', 'Noa')" [text]="'Noa'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('vesperas', 'Vésperas')" [text]="'Vésperas'"></app-button>
+        <app-button [width]="'100%'" class="btn-hours" (click)="changePart('completas', 'Completas')" [text]="'Completas'"></app-button>
     </div>
 
     <h3 class="text-center mt-4">{{ selectedTab }}</h3>

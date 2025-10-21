@@ -16,7 +16,7 @@ export class BreviaryComponent {
   loaded = false
   safeLiturgyHtml: SafeHtml | null = null
   liturgy: any = null
-  currentPart = 'laudes'
+  currentPart = 'oficio_leitura'
   day = ''
   selectedTab = ''
   language = 'pt_BR'
@@ -102,7 +102,7 @@ export class BreviaryComponent {
   }
 
   async loadLiturgy(): Promise<void> {
-    this.selectedTab = 'Laudes'
+    this.selectedTab = 'Ofício'
     this.loaded = false
 
     const date = this.selectedDate || this.getBrasiliaDate()
