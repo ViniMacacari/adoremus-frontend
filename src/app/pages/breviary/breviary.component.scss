@@ -9,3 +9,84 @@
     white-space: pre-line !important;
     hyphens: auto !important;
 }
+
+.calendar-popup {
+    min-width: 400px;
+    background-color: #2d1f1f;
+
+    .calendar-container {
+        min-width: 400px;
+        margin: auto;
+        color: #fdf5e6;
+    }
+
+    @media (max-width: 500px) {
+        min-width: 300px !important;
+        max-width: 100% !important;
+
+        .calendar-container {
+            min-width: 300px !important;
+            max-width: 100% !important;
+        }
+    }
+}
+
+.calendar-header h5 {
+    font-weight: 500;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.day-name {
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.6;
+    color: #fff;
+}
+
+.day-cell {
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.day-cell {
+    background-color: #9c7e47;
+    color: black;
+    font-weight: bold;
+}
+
+.day-cell.selected {
+    background-color: #fff3cd !important;
+    color: black !important;
+}
+
+.calendar-wrapper {
+    position: relative;
+
+    .calendar-popup {
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+    }
+}
+
+.ql-editor p:empty::after {
+    content: '\00a0';
+    display: block;
+}
+
+.content-lectio {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-line !important;
+    hyphens: auto !important;
+}
