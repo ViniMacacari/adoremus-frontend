@@ -96,9 +96,6 @@ export class RequestService {
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'token': `${localStorage.getItem('token')}`,
-      'grupos': `${localStorage.getItem('grupos')}`,
-      'user': `${localStorage.getItem('user')}`
     })
   }
 
