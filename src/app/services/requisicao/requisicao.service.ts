@@ -100,12 +100,12 @@ export class RequestService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Erro: ${error.error.error}`
-    } else {
-      errorMessage = `${error.error.error}`
-    }
-    return throwError(errorMessage)
+    const hasErrorEvent = typeof ErrorEvent !== 'undefined'
+    const isDomError = hasErrorEvent && error.error instanceof ErrorEvent
+    const msg = isDomError
+      ? error.error.error
+      : (typeof error.error === 'string' ? error.error : (error.error?.error || error.message || 'erro'))
+
+    return throwError(() => msg)
   }
 }
