@@ -3,9 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError, firstValueFrom } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RequestService {
   private url = 'https://api.adoremus.com.br'
   // private url = 'http://localhost:2024'
