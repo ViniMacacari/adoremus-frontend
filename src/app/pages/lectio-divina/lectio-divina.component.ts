@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, ViewEncapsulation } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, PLATFORM_ID } from '@angular/core'
+import { CommonModule, isPlatformBrowser } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { RequestService } from '../../services/requisicao/requisicao.service'
@@ -52,7 +52,8 @@ export class LectioDivinaComponent implements OnInit {
 
   constructor(
     private request: RequestService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -192,6 +193,10 @@ export class LectioDivinaComponent implements OnInit {
   }
 
   sanitizeHtml(rawHtml: string): string {
+    if (!isPlatformBrowser(this.platformId) || typeof DOMParser === 'undefined') {
+      return rawHtml
+    }
+
     const parser = new DOMParser()
     const doc = parser.parseFromString(rawHtml, 'text/html')
 
