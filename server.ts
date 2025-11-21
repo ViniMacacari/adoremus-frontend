@@ -18,7 +18,7 @@ export function app(): express.Express {
 
   server.get('**', express.static(browserDistFolder, {
     maxAge: '1y',
-    index: 'index.html',
+    index: false,
   }))
 
   server.get('**', (req, res, next) => {
