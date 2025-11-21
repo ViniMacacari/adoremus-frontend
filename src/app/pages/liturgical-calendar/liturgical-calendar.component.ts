@@ -9,6 +9,7 @@ import { CapitalizeFirstPipe } from '../../pips/capitalize-first.pipe'
   selector: 'app-liturgical-calendar',
   standalone: true,
   imports: [LoaderComponent, CommonModule, ModalLiturgicalInfoComponent, CapitalizeFirstPipe],
+  providers: [RequestService],
   templateUrl: './liturgical-calendar.component.html',
   styleUrl: './liturgical-calendar.component.scss'
 })

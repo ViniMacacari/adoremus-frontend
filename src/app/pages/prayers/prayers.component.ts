@@ -8,6 +8,7 @@ import { LoaderComponent } from "../../components/loader/loader.component"
   selector: 'app-prayers',
   standalone: true,
   imports: [CommonModule, ButtonComponent, LoaderComponent],
+  providers: [RequestService],
   templateUrl: './prayers.component.html',
   styleUrl: './prayers.component.scss'
 })

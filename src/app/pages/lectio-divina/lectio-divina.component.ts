@@ -11,6 +11,7 @@ import { ModalComponent } from "../../components/modal/modal.component"
   selector: 'app-lectio-divina',
   standalone: true,
   imports: [CommonModule, FormsModule, LoaderComponent, ButtonComponent, ModalComponent],
+  providers: [RequestService],
   templateUrl: './lectio-divina.component.html',
   styleUrl: './lectio-divina.component.scss'
 })
