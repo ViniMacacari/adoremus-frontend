@@ -19,6 +19,7 @@ interface Saint {
   selector: 'app-saint',
   standalone: true,
   imports: [LoaderComponent, CommonModule],
+  providers: [RequestService],
   templateUrl: './saint.component.html',
   styleUrl: './saint.component.scss'
 })

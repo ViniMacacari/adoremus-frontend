@@ -7,6 +7,7 @@ import { RequestService } from '../../services/requisicao/requisicao.service'
   selector: 'app-missal',
   standalone: true,
   imports: [LoaderComponent, CommonModule],
+  providers: [RequestService],
   templateUrl: './missal.component.html',
   styleUrl: './missal.component.scss'
 })

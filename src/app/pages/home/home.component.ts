@@ -12,6 +12,7 @@ import { CapitalizeFirstPipe } from '../../pips/capitalize-first.pipe'
   styleUrls: ['./home.component.scss'],
   standalone: true,
   imports: [CommonModule, LoaderComponent, ButtonComponent],
+  providers: [RequestService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent {

@@ -9,6 +9,7 @@ import { LoaderComponent } from "../../components/loader/loader.component"
   selector: 'app-blog',
   standalone: true,
   imports: [LoaderComponent, CommonModule, FormsModule],
+  providers: [RequestService],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss'
 })

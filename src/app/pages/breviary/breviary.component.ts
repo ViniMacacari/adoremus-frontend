@@ -9,6 +9,7 @@ import { ButtonComponent } from "../../components/button/button.component"
   selector: 'app-breviary',
   standalone: true,
   imports: [CommonModule, LoaderComponent, ButtonComponent],
+  providers: [RequestService],
   templateUrl: './breviary.component.html',
   styleUrl: './breviary.component.scss'
 })
