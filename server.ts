@@ -24,11 +24,8 @@ export function app(): express.Express {
   server.get('**', (req, res, next) => {
 
     if (req.originalUrl === '/') {
-      const maxage = 60 * 59
-      const SWR_IN_SECONDS = 60 * 60
-
       res.set({
-        'Cache-Control': `s-maxage=${maxage}, stale-while-revalidate=${SWR_IN_SECONDS}`,
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
       })
     }
 
