@@ -29,6 +29,17 @@ export class RequestService {
     )
   }
 
+  async getFresh(complemento: string, responseType?: 'blob', options?: any): Promise<any> {
+    const separator = complemento.includes('?') ? '&' : '?'
+    const cacheBustedComplemento = `${complemento}${separator}_=${Date.now()}`
+
+    return this.get(cacheBustedComplemento, responseType, {
+      cache: 'no-store',
+      transferCache: false,
+      ...options
+    })
+  }
+
   async getPaginated(endpoint: string, options?: any): Promise<any[]> {
     const headers = this.createHeaders()
     const allItems: any[] = []

@@ -1,6 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, PLATFORM_ID } from '@angular/core'
+import { CommonModule, isPlatformBrowser } from '@angular/common'
 import { Router } from '@angular/router'
-import { CommonModule } from '@angular/common'
 import { RequestService } from '../../services/requisicao/requisicao.service'
 import { LoaderComponent } from "../../components/loader/loader.component"
 import { ButtonComponent } from "../../components/button/button.component"
@@ -19,6 +19,7 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private request: RequestService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   private capitalize: CapitalizeFirstPipe = new CapitalizeFirstPipe()
@@ -31,24 +32,23 @@ export class HomeComponent {
     firstReading: string,
     secondReading: string,
     dayMass: string
-  } = {
-      day: '09/07/2025',
-      gospel: 'Mt 10,1-7',
-      firstReading: '1 Cor 2,1-5',
-      secondReading: '1 Cor 2,6-10',
-      dayMass: 'Sexta-feira da 15ª semana do Tempo Comum'
-    }
+  } | null = null
 
   async ngAfterViewInit(): Promise<void> {
-    setTimeout(async () => {
+    if (!isPlatformBrowser(this.platformId)) {
+      return
+    }
+
+    try {
       await this.getDayLiturgy()
+    } finally {
       this.allLoaded = true
-    })
+    }
   }
 
   async getDayLiturgy(): Promise<void> {
-    const result = await this.request.get('/liturgia/evangelho?locale=br')
-    const dayMass = await this.request.get('/liturgia/calendario/hoje')
+    const result = await this.request.getFresh('/liturgia/evangelho?locale=br')
+    const dayMass = await this.request.getFresh('/liturgia/calendario/hoje')
     this.dayLiturgy = {
       day: result.dados.data_liturgia,
       gospel: result.dados.evangelho,
